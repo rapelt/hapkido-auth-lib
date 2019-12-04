@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test-ci": "ng test auth-lib --watch=false --browsers=ChromeHeadless",
-    "build-ci": "ng build auth-lib --prod"
+    "build-ci": "ng build auth-lib"
   },
   "private": true,
   "dependencies": {
