@@ -12,6 +12,7 @@ before_deploy:
 deploy:
   provider: npm
   email: rebekahapelt@gmail.com
+  edge: true
   api_key:
     secure: gwl60dThMfHLArMWOj/MMZ1RkfWifZDtrhPk6KAH1WYtWfFGf9IJ6I6wwBnKkuo/BAOwFTFMwNx9suv+tbo0YP4cmB3FWwgj7P004r14ESraoeOqKencRuKkatesUQeUrF1NO+MtOi8NFt1QgvGP0cJS1GAgqPph7sAfhXN8Y9uFdMyPkNKgL/+/J6dU8DGDngQqJji1mdGJcbTKVQkkhd3ZkYgyUJkefFRpAjksNbRn2TsnulvqN9aRd+pte3i/0QXQ6V4+WjwcUfKpCmOKY/CxlbCmYjg8C6CXflLLMW29xCR95yWcl+vRro+GQqf0R4A5ufRELkqvNzUDugF6oyH5XgY95DhdQ8rYdtyVYPn5gwiUZx1TZu/YgqWMylTiKj26KoKaxF+tt919PnuOGz9tshOS8MaMCk8x+aZhsJFFfVYMJZRY5RTUBGex5lkE7PvDlC2DsW6rJLXzKqCUeaIxw86GBYthpDWo5K0Ee40R+BcAH/iNeC9C3JrBb3Knj3SEbpgv/D1hfpAUY62HVDnYHyyLZt96Cw1rd3pF+++fWecNXqqG5Eg4qJcmaXQV39nbDodsV2/gQ9klTsAPgplVjT0i3sAmhmpsZa/qtg/3p+bIG/ONpXpJcNlV5nYnV0dpCkFO8Td5OCjwPW3jfsGSFGBD8r/7AFlYAV1Vu+g=
   on:
