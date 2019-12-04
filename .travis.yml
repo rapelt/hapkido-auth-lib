@@ -1,0 +1,20 @@
+sudo: required
+addons:
+  chrome: stable
+language: node_js
+node_js:
+  - node
+script:
+  - npm run test-ci
+  - npm run build-ci
+before_deploy:
+  - cd dist/auth-lib
+deploy:
+  provider: npm
+  email: rebekahapelt@gmail.com
+  skip_cleanup: true
+  api_key:
+    secure: xxx
+  on:
+    tags: true
+    repo: rapelt/hapkido-auth-lib
