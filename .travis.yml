@@ -11,9 +11,11 @@ before_deploy:
 - cd dist/auth-lib
 deploy:
   provider: npm
+  edge: true
   email: rebekahapelt@gmail.com
   api_key:
     secure: aFKlyXp1yIQFEsfYbXr1hxYugaHFZm1EPit4j7RKW7yus1v7hhHOMijfrK1ZO3okjR5y1ZTLtzd0H9D6JZ2rcIxFti9AqmbSsSwO25Gsfel5MkWEfoGZok9IzbLzFMljmJ6fwnc8XfIfP1UCbFst2gQ6ktH/1RU8gPPVfiYXKT3XErGIYdJfBZ68NT/JdtJIVdaw4WywXWFd+OhrmMAH/Dfrig3BYVGwLbJBSAomS3qLkIfTTxotvefCahehVQZx2/WZjHepdHrjlNwkIzKPKQ8ZBWuwwcp7zRKn+RYqlURToE4Z5tlUZkKgtcsn2otcFLl8c36KMG+bLoHFIAp1tdv8M/XZGXZvNrQeI8rYNfRBAcXzr2isPSDGiarnEO3t0WKn/gWt0WB40UqJ9x856dKX68DMNSr9Yt2l+JJGxqQChMGhS9EFE079qcngjGczJ3OogATCgNMvgClI/FJlfw4CdXFXdRwpxAV6IEcdwC/yxET66HvG6oyXVeAEbjFSDPCyOUJwgy3PBhf1VKEbZJtJ4LAo84iArUAj/cr/M0RvjkeZuzTnIQkWZo9G1HuGvfXxjgoLcNOBr5cYUc46aWsPB7uNa5VtduDZxSFw6jO7PdSwI6lQIf9jH2JCFn9wkS7RsbywNFqMHf7mzViAfBohqKzHC0ai7Ur7uRfGwc0=
   on:
     tags: false
     repo: rapelt/hapkido-auth-lib
+    branch: master
