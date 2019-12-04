@@ -11,7 +11,9 @@
     "test-ci": "ng test auth-lib --watch=false --browsers=ChromeHeadless",
     "build-ci": "ng build auth-lib"
   },
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
