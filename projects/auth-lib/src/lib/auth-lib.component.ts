@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {ViewEncapsulation} from '@angular/cli/lib/config/schema';
 
 @Component({
   selector: 'auth-component-lib',
-  template: `
-    <p>
-      auth-lib works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './auth-lib.component.html',
+  styleUrls: ['./auth-lib.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class AuthLibComponent implements OnInit {
 
   constructor() { }

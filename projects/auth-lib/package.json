@@ -7,14 +7,15 @@
   },
   "peerDependencies": {
     "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
+    "@angular/core": "^8.2.14",
+    "@ionic/angular": "^4.11.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/you/hapkid-auth-lib"
+    "url": "https://github.com/rapelt/hapkido-auth-lib"
   },
   "description": "This is a library containing components and services for authentication with AWS Cognito for the Hapkido App suite.",
   "keywords": [
@@ -24,6 +25,6 @@
   ],
   "homepage": "www.hapkidobrisbane.com.au",
   "bugs": {
-    "url": "https://github.com/you/hapkido-auth-lib"
+    "url": "https://github.com/rapelt/hapkido-auth-lib"
   }
 }
