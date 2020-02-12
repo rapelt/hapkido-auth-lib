@@ -5,15 +5,16 @@
 import { EnvironementModel } from './environment.model';
 
 export const environment = {
-  production: false
+  production: true
 };
 
+
 export const config: EnvironementModel = {
-  environmentName: 'Local Environment',
-  ionicEnvName: 'local',
-  classAPIEndpoint: 'http://localhost:8090/class/',
-  studentAPIEndpoint: 'http://localhost:8090/student/',
-  familyAPIEndpoint: 'http://localhost:8090/family/',
+  environmentName: 'Test Environment',
+  ionicEnvName: 'test',
+  classAPIEndpoint: 'http://localhost:8080/class/',
+  studentAPIEndpoint: 'http://localhost:8080/student/',
+  familyAPIEndpoint: 'http://localhost:8080/family/',
   getClassTime: 15000,
   firebase: 'AIzaSyDejeeCDRpDwDi3gCqHUDqjeIF-8dbJKFo',
   firebasedomain: 'hapkido-signin.firebaseapp.com',

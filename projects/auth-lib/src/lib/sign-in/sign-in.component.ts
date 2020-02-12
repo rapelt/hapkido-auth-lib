@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthStateService} from '../auth-state.service';
 
 @Component({
   selector: 'auth-sign-in',
@@ -10,12 +11,15 @@ export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
 
+  @Output()
+  signInClicked: EventEmitter<{username: string, password: string}> = new EventEmitter<{username: string, password: string}>();
+
   constructor() { // public store: Store<AppState>, public router: Router
   }
 
   ngOnInit() {
     this.signInForm = new FormGroup({
-      instructor : new FormControl('', [Validators.required]),
+      username : new FormControl('', [Validators.required]),
       password : new FormControl('', Validators.required)
     });
 
@@ -28,15 +32,15 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO Validate form
-    // const payload = {
-    //   username: this.signInForm.get('instructor').value.toString().trim(),
-    //   password: this.signInForm.get('password').value.toString().trim()
-    // };
-    //
-    // this.store.dispatch(new SignIn(payload));
-    //
-    // console.log('submit');
+    debugger;
+    const payload = {
+      username: this.signInForm.get('username').value.toString().trim(),
+      password: this.signInForm.get('password').value.toString().trim()
+    };
+
+    this.signInClicked.emit({username: payload.username, password: payload.password});
+
+    console.log('submit');
   }
 
   forgotPasswordButton() {

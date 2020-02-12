@@ -1,2 +1,4 @@
-<auth-sign-in></auth-sign-in>
+
+
+<auth-sign-in *ngIf="!authStateService.isLoggedIn" (signInClicked)="signIn($event)"></auth-sign-in>
 
