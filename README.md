@@ -33,6 +33,9 @@ Add
 
 to Polyfills
 
-git commit 
-git tag -a v1.4 -m "my version 1.4"
-git push
+
+HOW TO UPDATE NPM VERSION NUMBER
+You have to update the library package json not the test package. 
+npm version minor
+
+
