@@ -7,10 +7,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "cypress open",
     "test-ci": "ng test auth-lib --watch=false --browsers=ChromeHeadless",
     "build-ci": "ng build auth-lib",
-    "watch-lib": "watch 'npm run build-ci' ./projects"
+    "watch-lib": "watch 'npm run build-ci' ./projects",
+    "cy:start:local": "cypress open",
+    "cy:run:ci": " $(npm bin)/cypress run --record --key 7b4f492f-dcf7-41f6-b99a-d7a94b1f6b91 --config baseUrl=http://localhost:8000",
+    "cy:ci": "npm run build && run-p --race serve:ci cy:run:ci",
+    "serve:ci": "angular-http-server --path dist/auth-library-project -a localhost -p 8000"
   },
   "publishConfig": {
     "access": "public"
@@ -42,7 +46,9 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "angular-http-server": "^1.9.0",
     "codelyzer": "^5.2.1",
+    "cypress": "^4.0.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -51,6 +57,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.5.2",
     "ng-packagr": "^5.7.1",
+    "npm-run-all": "^4.1.5",
     "protractor": "^5.4.3",
     "scss-bundle": "^3.0.2",
     "ts-node": "^7.0.1",

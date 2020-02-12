@@ -1,0 +1,8 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "viewportWidth": 360,
+  "viewportHeight": 640,
+  "chromeWebSecurity": false,
+  "videoUploadOnPasses": false,
+  "projectId": "nkmwhq"
+}
