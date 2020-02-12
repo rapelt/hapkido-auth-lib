@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
 import {ViewEncapsulation} from '@angular/cli/lib/config/schema';
 import {AuthStateService} from './auth-state.service';
 import {Config} from './auth-lib.models';
@@ -19,7 +19,6 @@ enum AuthScreen {
 })
 
 export class AuthLibComponent implements OnInit {
-
   constructor(public authStateService: AuthStateService, public authService: AuthenticationServices) { }
 
   ngOnInit() {

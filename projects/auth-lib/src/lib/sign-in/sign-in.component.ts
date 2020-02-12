@@ -32,7 +32,6 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     const payload = {
       username: this.signInForm.get('username').value.toString().trim(),
       password: this.signInForm.get('password').value.toString().trim()

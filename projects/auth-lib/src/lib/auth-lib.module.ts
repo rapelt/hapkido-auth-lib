@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {Injectable, ModuleWithProviders, NgModule} from '@angular/core';
 import { AuthLibComponent } from './auth-lib.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import {IonicModule} from '@ionic/angular';
@@ -20,6 +20,11 @@ import {AuthStateService} from './auth-state.service';
     AuthStateService
   ],
   exports: [AuthLibComponent]
+})
+
+
+@Injectable({
+  providedIn: 'root'
 })
 export class AuthLibModule {
   public static forRoot(config: any): ModuleWithProviders {
