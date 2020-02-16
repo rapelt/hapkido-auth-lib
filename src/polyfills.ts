@@ -67,3 +67,6 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 // @ts-ignore
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
+(window as any).process = { browser: true };
+
+

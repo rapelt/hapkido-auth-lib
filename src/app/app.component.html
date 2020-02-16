@@ -1,6 +1,9 @@
 <ion-app>
   <ion-content>
-    <auth-component-lib></auth-component-lib>
-    <button (click)="signOut()">Sign Out</button>
+    <auth-component-lib>
+      <h1 class="auth-signed-in">I am logged in</h1>
+      <auth-sign-out></auth-sign-out>
+    </auth-component-lib>
+<!--    <button (click)="signOut()">Sign Out</button>-->
   </ion-content>
 </ion-app>

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { AuthStateService } from 'auth-lib';
-import {Subscriber} from 'rxjs';
 
 
 @Component({
@@ -15,16 +14,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.setIsAdmin(true);
-
     this.authService._messageInEvent.subscribe((err) => {
-      console.log(err);
+      console.log(err.message);
     });
   }
-
-  signOut() {
-    // this.authService.signOut();
-  }
-
-
 }

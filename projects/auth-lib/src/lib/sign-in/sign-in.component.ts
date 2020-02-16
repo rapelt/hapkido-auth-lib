@@ -22,13 +22,6 @@ export class SignInComponent implements OnInit {
       username : new FormControl('', [Validators.required]),
       password : new FormControl('', Validators.required)
     });
-
-    // this.store.select(selectAuthenticationState).subscribe((userState) => {
-    //   if (userState === AuthenticationStates.LOGGEDIN) {
-    //     console.log('should move to home');
-    //     this.router.navigate(['/home']);
-    //   }
-    // });
   }
 
   onSubmit() {
@@ -38,13 +31,6 @@ export class SignInComponent implements OnInit {
     };
 
     this.signInClicked.emit({username: payload.username, password: payload.password});
-
-    console.log('submit');
-  }
-
-  forgotPasswordButton() {
-    // this.router.navigate(['/authentication/forgot-password']);
-
   }
 
 }

@@ -1,4 +1,27 @@
+<div *ngIf="isSignedIn === authStateEnum.Loggedout" >
+  <auth-sign-in (signInClicked)="signIn($event)"></auth-sign-in>
+  <ion-button type="button" class="cy-forgot-btn" color="tertiary" fill="clear" (click)="forgotPasswordBTN()">Forgot Password?</ion-button>
+</div>
 
+<div *ngIf="isSignedIn === authStateEnum.ForcedPasswordReset">
+  <auth-force-password-reset (back)="back()" (forcePasswordReset)="forcePasswordReset($event)"></auth-force-password-reset>
+</div>
 
-<auth-sign-in *ngIf="!authStateService.isLoggedIn" (signInClicked)="signIn($event)"></auth-sign-in>
+<div *ngIf="isSignedIn === authStateEnum.ApplyForPasswordReset">
+  <h1> Apply for forgot password</h1>
+  <auth-apply-password-reset (applyResetPassword)="applyPasswordReset($event)" (back)="back()"></auth-apply-password-reset>
+</div>
 
+<div *ngIf="isSignedIn === authStateEnum.SetNewPassword">
+  <auth-set-new-password (back)="back()" (resetPassword)="resetPassword($event)" (error)="error($event)"></auth-set-new-password>
+  <h1> Set new password</h1>
+</div>
+
+<div *ngIf="isSignedIn === authStateEnum.LoggedIn">
+  <ng-content></ng-content>
+</div>
+
+<div *ngIf="isSignedIn === authStateEnum.VerifyEmail">
+  <auth-verify-email></auth-verify-email>
+  <h1> Verify Email</h1>
+</div>

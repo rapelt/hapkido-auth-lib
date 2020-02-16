@@ -11,7 +11,8 @@
     "@ionic/angular": "^4.11.5",
     "amazon-cognito-identity-js": "^3.0.9",
     "aws-sdk": "^2.418.0",
-    "jsonwebtoken": "^8.5.0"
+    "jsonwebtoken": "^8.5.0",
+    "@auth0/angular-jwt": "^4.0.0"
   },
   "publishConfig": {
     "access": "public"

@@ -15,7 +15,10 @@ import {
 } from 'amazon-cognito-identity-js';
 import { from } from 'rxjs';
 
-import * as jwt from 'jsonwebtoken';
+// import * as jwt from 'jsonwebtoken';
+import * as jwt from '@auth0/angular-jwt';
+import {AuthStatesEnum} from './auth-states.enum';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 // import { MessagesService } from '../../messages/messages.service';
 // import { ResetPasswordRequired, SetUserAttributes, SignInSuccess } from './authentication.actions';
@@ -43,6 +46,18 @@ export class AuthenticationServices {
     }
   }
 
+  checkIfSessionValid(): boolean {
+    if (this.session && this.session.isValid()) {
+      console.log('Session Valid');
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+      return true;
+    } else {
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      console.log('Session invalid');
+      return false;
+    }
+  }
+
   signIn(username, password) {
     this.cognitoUser = this.getNewCognitoUser(username);
 
@@ -66,7 +81,6 @@ export class AuthenticationServices {
       mfaRequired: null,
       onFailure: (error) => {
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
-
         // this.messagesService.updateError.next(error.message);
         console.log(error);
       },
@@ -77,13 +91,15 @@ export class AuthenticationServices {
     this.session = session;
     console.log(`Signed in user${this.cognitoUser.getUsername()}. Session valid?: `
       , session.isValid(), ' Admin?:' +  this.isAdmin(session));
-    this.authStateService.setIsLoggedIn(session.isValid());
+    if (session.isValid()) {
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+    }
     this.authStateService.setIsAdmin(this.isAdmin(session));
   }
 
   newPasswordIsRequired(userAttributes, requiredAttributes) {
     this.userAttributes = userAttributes;
-    // this.store.dispatch(new ResetPasswordRequired());
+    this.authStateService.setIsLoggedIn(AuthStatesEnum.ForcedPasswordReset);
     console.log('new Password required');
   }
 
@@ -93,11 +109,7 @@ export class AuthenticationServices {
 
   getAttribute() {
     if (this.session && this.session.isValid()) {
-      this.cognitoUser.getUserAttributes((err, results) => {
-        // this.store.dispatch(new SetUserAttributes({attributes: results, session: this.session}));
-      });
-
-      // this.store.dispatch(new SetUserName(this.cognitoUser.getUsername()))
+      this.cognitoUser.getUserAttributes((err, results) => {});
     }
   }
 
@@ -126,13 +138,16 @@ export class AuthenticationServices {
           `${new Date()} - Refreshed session for ${self.cognitoUser.getUsername()}. Valid?: `, session.isValid(),
           ' Admin?:' +  this.isAdmin(session));
 
+
         this.getAttribute();
 
-        // if (session.isValid() && this.isAdmin(session)) {
-        //   this.session = session;
-        //   // this.store.dispatch(new SignInSuccess(this.cognitoUser));
-        //
-        // }
+        if (session.isValid() && this.isAdmin(session)) {
+          this.session = session;
+          this.authStateService.setIsAdmin(this.isAdmin(session));
+        }
+
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+
         resolve(session);
       });
     });
@@ -144,14 +159,16 @@ export class AuthenticationServices {
   }
 
   isAdmin(session) {
+    const helper = new JwtHelperService();
+
     if (session) {
-      // const accesstoken = session.getAccessToken();
-      // const jwtToken = jwt.decode(accesstoken.getJwtToken());
-      // if (jwtToken['cognito:groups']) {
-      //   return !!jwtToken['cognito:groups'].find((option) => option === 'admin');
-      // } else {
-      //   return false;
-      // }
+      const accesstoken = session.getAccessToken();
+      const jwtToken = helper.decodeToken(accesstoken.getJwtToken());
+      if (jwtToken['cognito:groups']) {
+        return !!jwtToken['cognito:groups'].find((option) => option === 'admin');
+      } else {
+        return false;
+      }
     }
     return false;
   }
@@ -161,6 +178,9 @@ export class AuthenticationServices {
       this.cognitoUser.signOut();
       this.resetCreds(true);
       this.session = null;
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+    } else {
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
     }
   }
 
@@ -172,15 +192,19 @@ export class AuthenticationServices {
     });
   }
 
+  applyForPasswordReset() {
+    this.authStateService.setIsLoggedIn(AuthStatesEnum.ApplyForPasswordReset);
+  }
+
   forgotPassword(username, verificationCode, newPassword) {
+    console.log(username, verificationCode, newPassword);
     this.cognitoUser = this.getNewCognitoUser(username);
     this.cognitoUser.confirmPassword(verificationCode, newPassword, {
       onSuccess: () => {
         console.log('successfully changed password');
-        // this.router.navigateByUrl('/home');
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
       },
       onFailure:  (error) => {
-        // this.messagesService.updateError.next(error.message);
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
 
         console.log(error);
@@ -189,20 +213,20 @@ export class AuthenticationServices {
   }
 
   sendForgotPasswordCode(username) {
+    console.log('send password code');
     this.cognitoUser = this.getNewCognitoUser(username);
     this.cognitoUser.forgotPassword({
       onSuccess: (success) => {
         console.log('successfully send password code');
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);
       },
       onFailure:  (error) => {
-        // this.router.navigateByUrl('/home');
-        // this.messagesService.updateError.next(error.message);
-        this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
-
         console.log(error);
+        this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
       },
       inputVerificationCode: () => {
-      }
+        console.log('successfully send password code');
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);      }
     });
   }
 
@@ -213,8 +237,6 @@ export class AuthenticationServices {
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
-
-        // this.messagesService.updateError.next(err.message);
         console.log(err);
       },
       inputVerificationCode: () => {
@@ -230,7 +252,6 @@ export class AuthenticationServices {
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
-        // this.messagesService.updateError.next(err.message);
         console.log(err);
       }
     });
