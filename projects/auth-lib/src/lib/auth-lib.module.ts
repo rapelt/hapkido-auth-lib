@@ -12,9 +12,17 @@ import { ApplyPasswordResetComponent } from './apply-password-reset/apply-passwo
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AuthSeviceMock } from './authentication.service.mock';
+import {AuthenticationGuard} from './authentication.guard';
 
 @NgModule({
-  declarations: [AuthLibComponent, SignInComponent, SignOutComponent, ForcePasswordResetComponent, ApplyPasswordResetComponent, SetNewPasswordComponent, VerifyEmailComponent],
+  declarations: [
+    AuthLibComponent,
+    SignInComponent,
+    SignOutComponent,
+    ForcePasswordResetComponent,
+    ApplyPasswordResetComponent,
+    SetNewPasswordComponent,
+    VerifyEmailComponent],
   imports: [
     IonicModule,
     ReactiveFormsModule,
@@ -22,7 +30,8 @@ import { AuthSeviceMock } from './authentication.service.mock';
     CommonModule
   ],
   providers: [
-    AuthStateService
+    AuthStateService,
+    AuthenticationGuard
   ],
   exports: [AuthLibComponent, SignOutComponent]
 })

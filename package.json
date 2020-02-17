@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test auth-lib",
     "lint": "ng lint",
+    "test-all": "npm run test-ci && npm run cy:ci",
     "e2e": "cypress open",
     "test-ci": "ng test auth-lib --watch=false --browsers=ChromeHeadless",
     "build-ci": "ng build auth-lib",
