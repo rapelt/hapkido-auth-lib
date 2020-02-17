@@ -129,15 +129,13 @@ export class AuthenticationServices {
     return new Promise ((resolve, reject) => {
       self.cognitoUser.getSession((err, session) => {
         if (err) {
-          console.log('Error refreshing user session', err);
           this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
           return reject(err);
         }
 
-        console.log(
-          `${new Date()} - Refreshed session for ${self.cognitoUser.getUsername()}. Valid?: `, session.isValid(),
-          ' Admin?:' +  this.isAdmin(session));
-
+        // console.log(
+        //   `${new Date()} - Refreshed session for ${self.cognitoUser.getUsername()}. Valid?: `, session.isValid(),
+        //   ' Admin?:' +  this.isAdmin(session));
 
         this.getAttribute();
 
@@ -154,7 +152,6 @@ export class AuthenticationServices {
   }
 
   private resetCreds(clearCache: boolean = false) {
-    console.log('Resetting credentials for unauth access');
     this.cognitoUser = null;
   }
 
@@ -184,7 +181,7 @@ export class AuthenticationServices {
     }
   }
 
-  passwordChallenge(username, password) {
+  passwordChallenge(password) {
     return new Promise((resolve, reject) => {
       try {
         this.cognitoUser.completeNewPasswordChallenge(password, this.userAttributes, this.awsCallBackFunctions());
@@ -197,35 +194,27 @@ export class AuthenticationServices {
   }
 
   forgotPassword(username, verificationCode, newPassword) {
-    console.log(username, verificationCode, newPassword);
     this.cognitoUser = this.getNewCognitoUser(username);
     this.cognitoUser.confirmPassword(verificationCode, newPassword, {
       onSuccess: () => {
-        console.log('successfully changed password');
         this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
       },
       onFailure:  (error) => {
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
-
-        console.log(error);
       }
     });
   }
 
   sendForgotPasswordCode(username) {
-    console.log('send password code');
     this.cognitoUser = this.getNewCognitoUser(username);
     this.cognitoUser.forgotPassword({
       onSuccess: (success) => {
-        console.log('successfully send password code');
         this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);
       },
       onFailure:  (error) => {
-        console.log(error);
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
       },
       inputVerificationCode: () => {
-        console.log('successfully send password code');
         this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);      }
     });
   }
@@ -233,14 +222,11 @@ export class AuthenticationServices {
   sendEmailVerificationCode() {
     this.cognitoUser.getAttributeVerificationCode('email', {
       onSuccess: () => {
-        console.log('successfully send verification code');
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
-        console.log(err);
       },
       inputVerificationCode: () => {
-        console.log('blarg');
       }
     });
   }
@@ -252,7 +238,6 @@ export class AuthenticationServices {
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
-        console.log(err);
       }
     });
   }

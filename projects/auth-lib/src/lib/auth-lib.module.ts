@@ -37,7 +37,7 @@ export class AuthLibModule {
       ngModule: AuthLibModule,
       providers: [
         {
-          provide: 'config', // you can also use InjectionToken
+          provide: 'config',
           useValue: config
         },
          config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? { provide: AuthenticationServices, useClass: AuthSeviceMock }

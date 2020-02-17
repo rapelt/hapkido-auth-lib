@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="isSignedIn === authStateEnum.ForcedPasswordReset">
-  <auth-force-password-reset (back)="back()" (forcePasswordReset)="forcePasswordReset($event)"></auth-force-password-reset>
+  <auth-force-password-reset (back)="back()" (forcePasswordReset)="forcePasswordReset($event)" (error)="error($event)"></auth-force-password-reset>
 </div>
 
 <div *ngIf="isSignedIn === authStateEnum.ApplyForPasswordReset">

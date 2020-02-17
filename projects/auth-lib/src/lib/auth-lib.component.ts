@@ -56,8 +56,8 @@ export class AuthLibComponent implements OnInit {
     }
   }
 
-  forcePasswordReset(event: {username: string, password: string}) {
-    this.authService.passwordChallenge(event.username, event.password);
+  forcePasswordReset(event: {password: string}) {
+    this.authService.passwordChallenge(event.password);
   }
 
   error(message) {

@@ -100,8 +100,8 @@ export class AuthSeviceMock {
 
   }
 
-  passwordChallenge(username, password) {
-    this.successfulSignIn(username);
+  passwordChallenge(password) {
+    this.successfulSignIn();
   }
 
   forgotPassword(username, verificationCode, newPassword) {

@@ -31,7 +31,6 @@ export class SetNewPasswordComponent implements OnInit {
 
   forgotPasswordSubmit() {
     if (this.forgotPasswordForm.invalid) {
-      // this.messageService.updateError.next('You must enter a username and password');
       return;
     }
 

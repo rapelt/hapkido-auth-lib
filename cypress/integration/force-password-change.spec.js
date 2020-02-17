@@ -19,15 +19,11 @@ describe('Force Password Change', function() {
 
         cy.get('.cy-force-password-submit').contains('Reset Password');
 
-        cy.get('input[name=fp-username]').type('testAdmin');
         cy.get('input[name=password1]').type('test01');
         cy.get('input[name=password2]').type('test01');
         cy.get('.cy-force-password-submit').click();
         cy.get('.auth-signed-in').contains('I am logged in');
     });
-
-    // it('should show error if username does not exist', function() {
-    // });
 
     // it('should display an error to the user if the passwords don\'t match', function() {
     //     cy.visit('/');

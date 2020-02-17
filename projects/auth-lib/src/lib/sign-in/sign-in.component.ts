@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
   @Output()
   signInClicked: EventEmitter<{username: string, password: string}> = new EventEmitter<{username: string, password: string}>();
 
-  constructor() { // public store: Store<AppState>, public router: Router
+  constructor() {
   }
 
   ngOnInit() {
