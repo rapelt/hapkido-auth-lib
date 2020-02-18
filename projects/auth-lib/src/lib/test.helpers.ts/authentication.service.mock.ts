@@ -33,6 +33,8 @@ export class AuthSeviceMock {
 
         if (password === AuthStatesEnum.ForcedPasswordReset + '') {
           this.authStateService.setIsLoggedIn(AuthStatesEnum.ForcedPasswordReset);
+          this.authStateService.navigate(AuthStatesEnum.ForcedPasswordReset);
+
 
         }
 
@@ -64,10 +66,14 @@ export class AuthSeviceMock {
 
   applyForPasswordReset() {
     this.authStateService.setIsLoggedIn(AuthStatesEnum.ApplyForPasswordReset);
+    this.authStateService.navigate(AuthStatesEnum.ApplyForPasswordReset);
+
   }
 
   successfulSignIn(username = 'rebekah') {
     this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+    this.authStateService.navigate(AuthStatesEnum.LoggedIn);
+
     localStorage.setItem('login', 'true');
     this.getAttribute();
   }
@@ -97,6 +103,8 @@ export class AuthSeviceMock {
   signout() {
     localStorage.setItem('login', 'false');
     this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+    this.authStateService.navigate(AuthStatesEnum.Loggedout);
+
 
   }
 
@@ -124,6 +132,8 @@ export class AuthSeviceMock {
 
   sendForgotPasswordCode(username) {
     this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);
+    this.authStateService.navigate(AuthStatesEnum.SetNewPassword);
+
   }
 
   sendEmailVerificationCode() {

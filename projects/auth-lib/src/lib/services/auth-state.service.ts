@@ -45,7 +45,7 @@ export class AuthStateService {
         this.router.navigateByUrl('sign-in');
         break;
       case AuthStatesEnum.LoggedIn:
-        // this.router.onSameUrlNavigation();
+        this.router.navigateByUrl('home');
         break;
       case AuthStatesEnum.SetNewPassword:
         this.router.navigateByUrl('set-password');

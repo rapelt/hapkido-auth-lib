@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AuthStateService} from './auth-state.service';
+import { AuthStateService } from './auth-state.service';
 import {AuthenticationServices} from './auth.service';
 import {Router} from '@angular/router';
 import {AuthStatesEnum} from '../models/auth-states.enum';
@@ -23,8 +23,11 @@ export class AuthManagerService {
   }
 
   back() {
-    console.log('Back');
-    this.authService.checkIfSessionValid();
+    if (this.authService.checkIfSessionValid()) {
+      this.authStateService.navigate(AuthStatesEnum.LoggedIn);
+    } else {
+      this.authStateService.navigate(AuthStatesEnum.Loggedout);
+    }
   }
 
   applyPasswordReset(username: string) {
