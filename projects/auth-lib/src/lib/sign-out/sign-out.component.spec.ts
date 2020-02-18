@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignOutComponent } from './sign-out.component';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthStateService} from '../auth-state.service';
-import {AuthSeviceMock} from '../authentication.service.mock';
-import {AuthenticationServices} from '../auth.service';
+import {AuthStateService} from '../services/auth-state.service';
+import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
+import {AuthenticationServices} from '../services/auth.service';
 import {config} from '../../../../../src/environments/environment.test';
 import {RouterTestingModule} from '@angular/router/testing';
 

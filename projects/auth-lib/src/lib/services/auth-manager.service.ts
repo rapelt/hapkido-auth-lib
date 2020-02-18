@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthStateService} from './auth-state.service';
 import {AuthenticationServices} from './auth.service';
 import {Router} from '@angular/router';
-import {AuthStatesEnum} from './auth-states.enum';
+import {AuthStatesEnum} from '../models/auth-states.enum';
 
 @Injectable({
   providedIn: 'root'

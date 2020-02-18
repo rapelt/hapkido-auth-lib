@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthStateService} from '../auth-state.service';
-import {AuthenticationServices} from '../auth.service';
+import {AuthStateService} from '../services/auth-state.service';
+import {AuthenticationServices} from '../services/auth.service';
 
 @Component({
   selector: 'auth-sign-out',

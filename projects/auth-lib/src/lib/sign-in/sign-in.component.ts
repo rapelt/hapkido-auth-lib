@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthStateService} from '../auth-state.service';
-import {AuthManagerService} from '../auth-manager.service';
+import {AuthStateService} from '../services/auth-state.service';
+import {AuthManagerService} from '../services/auth-manager.service';
 
 @Component({
   selector: 'auth-sign-in',

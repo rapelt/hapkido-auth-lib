@@ -6,8 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthLibModule} from '../auth-lib.module';
 import {config} from '../test.helpers.ts/test.config';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AuthenticationServices} from '../auth.service';
-import {AuthSeviceMock} from '../authentication.service.mock';
+import {AuthenticationServices} from '../services/auth.service';
+import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 
 describe('ApplyPasswordResetComponent', () => {
   let component: ApplyPasswordResetComponent;

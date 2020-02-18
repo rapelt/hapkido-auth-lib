@@ -2,6 +2,8 @@
 
 # compiled output
 /dist
+/cypress/videos
+/cypress/screenshots
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -40,8 +42,6 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/cypress/videos/*
-/cypress/screenshots/*
 
 # System Files
 .DS_Store

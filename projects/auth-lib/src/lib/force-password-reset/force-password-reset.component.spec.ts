@@ -5,9 +5,9 @@ import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {config} from '../test.helpers.ts/test.config';
-import {AuthenticationServices} from '../auth.service';
-import {AuthSeviceMock} from '../authentication.service.mock';
-import {AuthManagerService} from '../auth-manager.service';
+import {AuthenticationServices} from '../services/auth.service';
+import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
+import {AuthManagerService} from '../services/auth-manager.service';
 
 describe('ForcePasswordResetComponent', () => {
   let component: ForcePasswordResetComponent;

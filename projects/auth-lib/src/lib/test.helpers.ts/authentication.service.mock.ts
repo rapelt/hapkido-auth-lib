@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
-import {AuthStateService} from './auth-state.service';
-import {AuthStatesEnum} from './auth-states.enum';
+import {AuthStateService} from '../services/auth-state.service';
+import {AuthStatesEnum} from '../models/auth-states.enum';
 // import { MessagesService } from '../../messages/messages.service';
 
 @Injectable({

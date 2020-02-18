@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {AuthStatesEnum} from './auth-states.enum';
+import {AuthStatesEnum} from '../models/auth-states.enum';
 import {AuthManagerService} from './auth-manager.service';
 import {Router} from '@angular/router';
 
@@ -25,7 +25,6 @@ export class AuthStateService {
    setIsLoggedIn(isLoggedIn: number) {
     this._isLoggedIn = isLoggedIn;
     this._isLoggedInEvent.next(this._isLoggedIn);
-    this.navigate();
   }
 
   sendMessage(message: string, type: string) {
@@ -40,13 +39,13 @@ export class AuthStateService {
     this._isAdmin = isAdmin;
   }
 
-  navigate() {
-    switch (this.isLoggedIn) {
+  navigate(isLoggedIn) {
+    switch (isLoggedIn) {
       case AuthStatesEnum.Loggedout:
         this.router.navigateByUrl('sign-in');
         break;
       case AuthStatesEnum.LoggedIn:
-        this.router.navigateByUrl('/');
+        // this.router.onSameUrlNavigation();
         break;
       case AuthStatesEnum.SetNewPassword:
         this.router.navigateByUrl('set-password');

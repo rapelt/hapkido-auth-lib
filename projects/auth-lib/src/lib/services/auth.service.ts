@@ -17,7 +17,7 @@ import { from } from 'rxjs';
 
 // import * as jwt from 'jsonwebtoken';
 import * as jwt from '@auth0/angular-jwt';
-import {AuthStatesEnum} from './auth-states.enum';
+import {AuthStatesEnum} from '../models/auth-states.enum';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 // import { MessagesService } from '../../messages/messages.service';
@@ -53,6 +53,7 @@ export class AuthenticationServices {
       return true;
     } else {
       this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      this.authStateService.navigate(AuthStatesEnum.Loggedout);
       console.log('Session invalid');
       return false;
     }
@@ -93,6 +94,7 @@ export class AuthenticationServices {
       , session.isValid(), ' Admin?:' +  this.isAdmin(session));
     if (session.isValid()) {
       this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+      this.authStateService.navigate(AuthStatesEnum.LoggedIn);
     }
     this.authStateService.setIsAdmin(this.isAdmin(session));
   }
@@ -100,6 +102,8 @@ export class AuthenticationServices {
   newPasswordIsRequired(userAttributes, requiredAttributes) {
     this.userAttributes = userAttributes;
     this.authStateService.setIsLoggedIn(AuthStatesEnum.ForcedPasswordReset);
+    this.authStateService.navigate(AuthStatesEnum.ForcedPasswordReset);
+
     console.log('new Password required');
   }
 
@@ -176,8 +180,12 @@ export class AuthenticationServices {
       this.resetCreds(true);
       this.session = null;
       this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      this.authStateService.navigate(AuthStatesEnum.Loggedout);
+
     } else {
       this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      this.authStateService.navigate(AuthStatesEnum.Loggedout);
+
     }
   }
 
@@ -191,6 +199,8 @@ export class AuthenticationServices {
 
   applyForPasswordReset() {
     this.authStateService.setIsLoggedIn(AuthStatesEnum.ApplyForPasswordReset);
+    this.authStateService.navigate(AuthStatesEnum.ApplyForPasswordReset);
+
   }
 
   forgotPassword(username, verificationCode, newPassword) {
@@ -198,6 +208,7 @@ export class AuthenticationServices {
     this.cognitoUser.confirmPassword(verificationCode, newPassword, {
       onSuccess: () => {
         this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+        this.authStateService.navigate(AuthStatesEnum.Loggedout);
       },
       onFailure:  (error) => {
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
@@ -210,12 +221,17 @@ export class AuthenticationServices {
     this.cognitoUser.forgotPassword({
       onSuccess: (success) => {
         this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);
+        this.authStateService.navigate(AuthStatesEnum.SetNewPassword);
+
       },
       onFailure:  (error) => {
         this.authStateService._messageInEvent.next({ message: error.message, type: 'error'});
       },
       inputVerificationCode: () => {
-        this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);      }
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.SetNewPassword);
+        this.authStateService.navigate(AuthStatesEnum.SetNewPassword);
+
+      }
     });
   }
 

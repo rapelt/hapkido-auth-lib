@@ -3,12 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignInComponent } from './sign-in.component';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthManagerService} from '../auth-manager.service';
+import {AuthManagerService} from '../services/auth-manager.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AuthLibModule} from '../auth-lib.module';
 import {config} from '../test.helpers.ts/test.config';
-import {AuthenticationServices} from '../auth.service';
-import {AuthSeviceMock} from '../authentication.service.mock';
+import {AuthenticationServices} from '../services/auth.service';
+import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;

@@ -4,9 +4,9 @@ import {ForcePasswordResetComponent} from './force-password-reset/force-password
 import {SetNewPasswordComponent} from './set-new-password/set-new-password.component';
 import {ApplyPasswordResetComponent} from './apply-password-reset/apply-password-reset.component';
 import {VerifyEmailComponent} from './verify-email/verify-email.component';
-import {PasswordResetGuard} from './password-reset.guard';
-import {AuthenticationGuard} from './authentication.guard';
-import {ForcePasswordResetGuard} from './force-password-reset.guard';
+import {PasswordResetGuard} from './guards/password-reset.guard';
+import {AuthenticationGuard} from './guards/authentication.guard';
+import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
 
 export const routes: Routes = [
   { path: '',

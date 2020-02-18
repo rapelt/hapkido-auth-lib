@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthManagerService} from '../auth-manager.service';
+import {AuthManagerService} from '../services/auth-manager.service';
 
 @Component({
   selector: 'auth-verify-email',

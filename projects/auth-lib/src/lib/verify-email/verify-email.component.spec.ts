@@ -5,10 +5,10 @@ import {SignInComponent} from '../sign-in/sign-in.component';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AuthManagerService} from '../auth-manager.service';
+import {AuthManagerService} from '../services/auth-manager.service';
 import {config} from '../test.helpers.ts/test.config';
-import {AuthenticationServices} from '../auth.service';
-import {AuthSeviceMock} from '../authentication.service.mock';
+import {AuthenticationServices} from '../services/auth.service';
+import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
