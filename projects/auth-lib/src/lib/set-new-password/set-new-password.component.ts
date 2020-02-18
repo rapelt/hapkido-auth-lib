@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthManagerService} from '../auth-manager.service';
 
 @Component({
   selector: 'auth-set-new-password',
@@ -9,17 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SetNewPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
 
-  @Output()
-  resetPassword: EventEmitter<{verificationCode: string, password: string}> =
-    new EventEmitter<{verificationCode: string, password: string}>();
-
-  @Output()
-  back: EventEmitter<null> = new EventEmitter<null>();
-
-  @Output()
-  error: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() { }
+  constructor(public authManager: AuthManagerService) { }
 
   ngOnInit() {
     this.forgotPasswordForm = new FormGroup({
@@ -37,9 +28,9 @@ export class SetNewPasswordComponent implements OnInit {
     if (this.forgotPasswordForm.get('password1').value === this.forgotPasswordForm.get('password2').value) {
       const verificationCode = this.forgotPasswordForm.get('verification_code').value.toString().trim();
       const password = this.forgotPasswordForm.get('password1').value.toString().trim();
-      this.resetPassword.emit({verificationCode, password});
+      this.authManager.resetPassword(verificationCode, password);
     } else {
-      this.error.emit('Passwords are not the same');
+      this.authManager.error('Passwords are not the same');
     }
   }
 

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthStateService} from '../auth-state.service';
+import {AuthManagerService} from '../auth-manager.service';
 
 @Component({
   selector: 'auth-sign-in',
@@ -11,11 +12,7 @@ export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
 
-  @Output()
-  signInClicked: EventEmitter<{username: string, password: string}> = new EventEmitter<{username: string, password: string}>();
-
-  constructor() {
-  }
+  constructor(public authManager: AuthManagerService) { }
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -30,7 +27,11 @@ export class SignInComponent implements OnInit {
       password: this.signInForm.get('password').value.toString().trim()
     };
 
-    this.signInClicked.emit({username: payload.username, password: payload.password});
+    this.authManager.signIn(payload.username, payload.password);
+  }
+
+  forgotPasswordBTN() {
+    this.authManager.forgotPasswordBTN();
   }
 
 }

@@ -8,7 +8,7 @@ describe('Force Password Change', function() {
         cy.get('input[name=username]').type('testAdmin');
         cy.get('input[name=password]').type('3');
         cy.get('.cy-sign-in-btn').click();
-        cy.get('.cy-force-password-submit').contains('Reset Password');
+        cy.url().should('include', '/force-password-change');
     });
 
     it('should log user in', function() {
@@ -16,13 +16,13 @@ describe('Force Password Change', function() {
         cy.get('input[name=username]').type('testAdmin');
         cy.get('input[name=password]').type('3');
         cy.get('.cy-sign-in-btn').click();
+        cy.url().should('include', '/force-password-change');
 
-        cy.get('.cy-force-password-submit').contains('Reset Password');
 
         cy.get('input[name=password1]').type('test01');
         cy.get('input[name=password2]').type('test01');
         cy.get('.cy-force-password-submit').click();
-        cy.get('.auth-signed-in').contains('I am logged in');
+        cy.get('p').contains('home works!');
     });
 
     // it('should display an error to the user if the passwords don\'t match', function() {

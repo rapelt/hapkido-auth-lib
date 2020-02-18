@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthManagerService} from '../auth-manager.service';
 
 @Component({
   selector: 'auth-force-password-reset',
@@ -10,16 +11,7 @@ export class ForcePasswordResetComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
 
-  @Output()
-  forcePasswordReset: EventEmitter<{password: string}> = new EventEmitter<{password: string}>();
-
-  @Output()
-  back: EventEmitter<null> = new EventEmitter<null>();
-
-  @Output()
-  error: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() {}
+  constructor(public authManager: AuthManagerService) { }
 
   ngOnInit() {
     this.resetPasswordForm = new FormGroup({
@@ -39,14 +31,14 @@ export class ForcePasswordResetComponent implements OnInit {
 
     if (this.resetPasswordForm.get('password1').value === this.resetPasswordForm.get('password2').value) {
       const password = this.resetPasswordForm.get('password1').value.toString().trim();
-      this.forcePasswordReset.emit({password});
+      this.authManager.forcePasswordReset(password);
     } else {
-      this.error.emit('Passwords are not the same');
+      this.authManager.error('Passwords are not the same');
     }
   }
 
   backBTN() {
-    this.back.emit();
+    this.authManager.back();
   }
 
 }

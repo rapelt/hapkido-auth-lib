@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthManagerService} from '../auth-manager.service';
 
 @Component({
   selector: 'auth-apply-password-reset',
@@ -10,13 +11,7 @@ export class ApplyPasswordResetComponent implements OnInit {
 
   usernameForm: FormGroup;
 
-  @Output()
-  applyResetPassword: EventEmitter<{username: string}> = new EventEmitter<{username: string}>();
-
-  @Output()
-  back: EventEmitter<null> = new EventEmitter<null>();
-
-  constructor() { }
+  constructor(public authManager: AuthManagerService) { }
 
   ngOnInit() {
     this.usernameForm = new FormGroup({
@@ -26,11 +21,11 @@ export class ApplyPasswordResetComponent implements OnInit {
 
   usernameSubmit() {
     const username = this.usernameForm.get('username').value.toString().trim();
-    this.applyResetPassword.emit({username});
+    this.authManager.applyPasswordReset(username);
   }
 
   backBTN() {
-    this.back.emit();
+    this.authManager.back();
   }
 
 }

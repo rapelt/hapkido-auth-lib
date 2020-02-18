@@ -1,6 +1,8 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {AuthStatesEnum} from './auth-states.enum';
+import {AuthManagerService} from './auth-manager.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,7 @@ export class AuthStateService {
   _isLoggedInEvent: Subject<number> = new Subject<number>();
   _messageInEvent: Subject<{ message: string, type: string}> = new Subject<{ message: string, type: string}>();
 
-
-  constructor() {
+  constructor(public router: Router) {
   }
 
   public get isLoggedIn(): number {
@@ -24,6 +25,7 @@ export class AuthStateService {
    setIsLoggedIn(isLoggedIn: number) {
     this._isLoggedIn = isLoggedIn;
     this._isLoggedInEvent.next(this._isLoggedIn);
+    this.navigate();
   }
 
   sendMessage(message: string, type: string) {
@@ -36,5 +38,28 @@ export class AuthStateService {
 
   setIsAdmin(isAdmin: boolean) {
     this._isAdmin = isAdmin;
+  }
+
+  navigate() {
+    switch (this.isLoggedIn) {
+      case AuthStatesEnum.Loggedout:
+        this.router.navigateByUrl('sign-in');
+        break;
+      case AuthStatesEnum.LoggedIn:
+        this.router.navigateByUrl('/');
+        break;
+      case AuthStatesEnum.SetNewPassword:
+        this.router.navigateByUrl('set-password');
+        break;
+      case AuthStatesEnum.ForcedPasswordReset:
+        this.router.navigateByUrl('force-password-change');
+        break;
+      case AuthStatesEnum.ApplyForPasswordReset:
+        this.router.navigateByUrl('forgot-password');
+        break;
+      case AuthStatesEnum.VerifyEmail:
+        this.router.navigateByUrl('verify-email');
+        break;
+    }
   }
 }

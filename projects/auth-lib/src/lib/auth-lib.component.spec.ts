@@ -8,22 +8,8 @@ import {AuthStateService} from './auth-state.service';
 import {AuthenticationServices} from './auth.service';
 import {AuthLibModule} from './auth-lib.module';
 import {AuthSeviceMock} from './authentication.service.mock';
-
-const config = {
-  environmentName: 'Test Environment',
-  ionicEnvName: 'test',
-  classAPIEndpoint: 'http://localhost:8080/class/',
-  studentAPIEndpoint: 'http://localhost:8080/student/',
-  familyAPIEndpoint: 'http://localhost:8080/family/',
-  getClassTime: 15000,
-  aws_cognito_region: 'nnn',
-  aws_user_pools_id: 'nnn',
-  aws_user_pools_web_client_id: 'nnn',
-  feature_toggle: {
-    cognito_login: true,
-    download_graphs: true
-  }
-};
+import {RouterTestingModule} from '@angular/router/testing';
+import {config} from './test.helpers.ts/test.config';
 
 describe('AuthLibComponent', () => {
   let component: AuthLibComponent;
@@ -35,13 +21,13 @@ describe('AuthLibComponent', () => {
       providers: [
         AuthStateService,
         { provide: AuthenticationServices, useClass: AuthSeviceMock },
-
-  ],
+      ],
       imports: [
         IonicModule,
         FormsModule,
         ReactiveFormsModule,
-        AuthLibModule.forRoot(config)
+        AuthLibModule.forRoot(config),
+        RouterTestingModule.withRoutes([])
       ]
     })
     .compileComponents();

@@ -12,7 +12,11 @@ import { ApplyPasswordResetComponent } from './apply-password-reset/apply-passwo
 import { SetNewPasswordComponent } from './set-new-password/set-new-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AuthSeviceMock } from './authentication.service.mock';
+import {RouterModule} from '@angular/router';
+import { routes } from './authentication-routing.module';
 import {AuthenticationGuard} from './authentication.guard';
+import {PasswordResetGuard} from './password-reset.guard';
+import {ForcePasswordResetGuard} from './force-password-reset.guard';
 
 @NgModule({
   declarations: [
@@ -27,11 +31,11 @@ import {AuthenticationGuard} from './authentication.guard';
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   providers: [
-    AuthStateService,
-    AuthenticationGuard
+    AuthStateService
   ],
   exports: [AuthLibComponent, SignOutComponent]
 })
@@ -51,7 +55,10 @@ export class AuthLibModule {
         },
          config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
           : AuthenticationServices,
-        AuthStateService
+        AuthStateService,
+        AuthenticationGuard,
+        PasswordResetGuard,
+        ForcePasswordResetGuard
       ]
     };
   }

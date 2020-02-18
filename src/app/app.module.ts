@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import {AuthLibModule} from 'auth-lib';
 import {IonicModule} from '@ionic/angular';
 import {config} from '../environments/environment';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

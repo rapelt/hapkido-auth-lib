@@ -3,26 +3,35 @@
 
 describe('Forgot password', function() {
     it('should return user to sign in page', function() {
-        cy.visit('/');
-        cy.get('.cy-forgot-btn').click();
-        cy.get('input[name=fp-username]').type('admin');
-        cy.get('.cy-fp-username-submit').click();
-        cy.get('input[name=verification-code]').type('123456');
-        cy.get('input[name=fp-password1]').type('test01');
-        cy.get('input[name=fp-password2]').type('test01');
-        cy.get('.cy-forgot-password-submit').click();
-        cy.get('.auth-signed-in').contains('I am logged in');
+      cy.visit('/');
+      cy.get('.cy-forgot-btn').click();
+      cy.url().should('include', '/forgot-password');
+
+      cy.get('input[name=fp-username]').type('admin');
+      cy.get('.cy-fp-username-submit').click();
+      cy.url().should('include', '/set-password');
+
+      cy.get('input[name=verification-code]').type('123456');
+      cy.get('input[name=fp-password1]').type('test01');
+      cy.get('input[name=fp-password2]').type('test01');
+      cy.get('.cy-forgot-password-submit').click();
+      cy.get('p').contains('home works!');
     });
 
     it('should show error if new passwords don\'t match', function() {
       cy.visit('/');
-        cy.get('.cy-forgot-btn').click();
-        cy.get('input[name=fp-username]').type('admin');
-        cy.get('.cy-fp-username-submit').click();
-        cy.get('input[name=verification-code]').type('123456');
-        cy.get('input[name=fp-password1]').type('test01');
-        cy.get('input[name=fp-password2]').type('test02');
-        cy.get('.cy-forgot-password-submit').click();
+      cy.get('.cy-forgot-btn').click();
+      cy.url().should('include', '/forgot-password');
+      cy.get('input[name=fp-username]').type('admin');
+      cy.get('.cy-fp-username-submit').click();
+      cy.url().should('include', '/set-password');
+
+
+      cy.get('input[name=verification-code]').type('123456');
+      cy.get('input[name=fp-password1]').type('test01');
+      cy.get('input[name=fp-password2]').type('test02');
+      cy.get('.cy-forgot-password-submit').click();
+      cy.url().should('include', '/set-password');
 
 
 

@@ -7,6 +7,7 @@ import {AuthStateService} from '../auth-state.service';
 import {AuthSeviceMock} from '../authentication.service.mock';
 import {AuthenticationServices} from '../auth.service';
 import {config} from '../../../../../src/environments/environment.test';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('SignOutComponent', () => {
   let component: SignOutComponent;
@@ -18,7 +19,8 @@ describe('SignOutComponent', () => {
       imports: [
         IonicModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes([])
       ],
       providers: [
         AuthStateService,
