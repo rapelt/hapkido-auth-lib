@@ -157,6 +157,7 @@ export class AuthenticationServices {
 
   private resetCreds(clearCache: boolean = false) {
     this.cognitoUser = null;
+    this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
   }
 
   isAdmin(session) {

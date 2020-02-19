@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {AuthLibModule} from '../../projects/auth-lib/src/lib/auth-lib.module';
 import {AuthenticationGuard} from 'auth-lib';
+import {OtherPageComponent} from './other-page/other-page.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,12 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthenticationGuard],
+    runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'other-page',
+    component: OtherPageComponent,
     canActivate: [AuthenticationGuard],
     runGuardsAndResolvers: 'always'
   },

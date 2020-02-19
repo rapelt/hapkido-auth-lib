@@ -44,6 +44,19 @@ describe('Sign In', function() {
     cy.url().should('include', '/home');
     cy.get('.cy-sign-out').click();
     cy.url().should('include', '/sign-in');
+  });
+
+  it('should refresh to the same page', function() {
+    window.localStorage.setItem('login', true);
+    cy.visit('/');
+    cy.url().should('include', '/home');
+    cy.get('.other-btn').click();
+    cy.url().should('include', '/other-page');
+    cy.visit('/other-page');
+    cy.wait(500);
+    cy.url().should('include', '/other-page');
+
+
 
   });
 

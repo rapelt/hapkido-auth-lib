@@ -92,7 +92,13 @@ export class AuthSeviceMock {
 
   private refreshOrResetCreds(isLoggedIn) {
     if (isLoggedIn === 'true') {
-      this.successfulSignIn();
+      // this.successfulSignIn();
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+      localStorage.setItem('login', 'true');
+      this.getAttribute();
+    } else {
+      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      localStorage.setItem('login', 'false');
     }
   }
 

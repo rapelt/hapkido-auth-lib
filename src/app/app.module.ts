@@ -7,11 +7,13 @@ import {AuthLibModule} from 'auth-lib';
 import {IonicModule} from '@ionic/angular';
 import {config} from '../environments/environment';
 import {HomeComponent} from './home/home.component';
+import { OtherPageComponent } from './other-page/other-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    OtherPageComponent
   ],
   imports: [
     BrowserModule,
