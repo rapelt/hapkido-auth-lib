@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 import {AuthStatesEnum} from '../models/auth-states.enum';
 import {AuthManagerService} from './auth-manager.service';
 import {Router} from '@angular/router';
+import {CognitoUser} from 'amazon-cognito-identity-js';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class AuthStateService {
 
   private _isLoggedIn: number = AuthStatesEnum.Loggedout;
   private _isAdmin: boolean;
+  private _cognitoUser: any;
+
 
   _isLoggedInEvent: Subject<number> = new Subject<number>();
   _messageInEvent: Subject<{ message: string, type: string}> = new Subject<{ message: string, type: string}>();
@@ -29,6 +32,14 @@ export class AuthStateService {
 
   sendMessage(message: string, type: string) {
     this._messageInEvent.next({message, type});
+  }
+
+  public get cognitoUser(): CognitoUser {
+    return this._cognitoUser;
+  }
+
+  public setCognitoUser(userAttributes) {
+    this._cognitoUser = userAttributes;
   }
 
   public get isAdmin(): boolean {

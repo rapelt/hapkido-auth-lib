@@ -93,6 +93,7 @@ export class AuthenticationServices {
     console.log(`Signed in user${this.cognitoUser.getUsername()}. Session valid?: `
       , session.isValid(), ' Admin?:' +  this.isAdmin(session));
     if (session.isValid()) {
+      this.getAttribute();
       this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       this.authStateService.navigate(AuthStatesEnum.LoggedIn);
     }
@@ -113,7 +114,7 @@ export class AuthenticationServices {
 
   getAttribute() {
     if (this.session && this.session.isValid()) {
-      this.cognitoUser.getUserAttributes((err, results) => {});
+      this.authStateService.setCognitoUser(this.cognitoUser);
     }
   }
 

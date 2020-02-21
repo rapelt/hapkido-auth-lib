@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import {AuthStateService} from '../services/auth-state.service';
 import {AuthStatesEnum} from '../models/auth-states.enum';
+import {CognitoUser, CognitoUserPool, ICognitoUserPoolData} from 'amazon-cognito-identity-js';
 // import { MessagesService } from '../../messages/messages.service';
 
 @Injectable({
@@ -86,6 +87,10 @@ export class AuthSeviceMock {
   }
 
   getAttribute() {
+    const username = 'rebekah';
+    this.authStateService.setCognitoUser({Username: username});
+
+    // return [ {username: 'rebekah'}];
     // this.store.dispatch(new SetUserAttributes({attributes: this.user_attri, session: null}));
   }
 
