@@ -55,6 +55,7 @@ export class AuthSeviceMock {
     const isLI = localStorage.getItem('login');
     console.log('is logged in ', isLI);
     if (isLI === 'true') {
+      this.getAttribute();
       this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       console.log('Session valid');
       return true;
@@ -72,11 +73,11 @@ export class AuthSeviceMock {
   }
 
   successfulSignIn(username = 'rebekah') {
+    this.getAttribute();
     this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
     this.authStateService.navigate(AuthStatesEnum.LoggedIn);
 
     localStorage.setItem('login', 'true');
-    this.getAttribute();
   }
 
 
@@ -89,18 +90,21 @@ export class AuthSeviceMock {
   getAttribute() {
     const username = 'rebekah';
     this.authStateService.setCognitoUser({Username: username});
+    this.authStateService.setUserAttributes( [
+      {Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'},
+      {Name: 'email', Value: 'rebekahapelt@gmail.com'},
+      {Name: 'email_verified', Value: 'true'}
 
-    // return [ {username: 'rebekah'}];
-    // this.store.dispatch(new SetUserAttributes({attributes: this.user_attri, session: null}));
+    ]);
   }
 
 
   private refreshOrResetCreds(isLoggedIn) {
     if (isLoggedIn === 'true') {
       // this.successfulSignIn();
+      this.getAttribute();
       this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       localStorage.setItem('login', 'true');
-      this.getAttribute();
     } else {
       this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
       localStorage.setItem('login', 'false');

@@ -49,6 +49,7 @@ export class AuthenticationServices {
   checkIfSessionValid(): boolean {
     if (this.session && this.session.isValid()) {
       console.log('Session Valid');
+      this.getAttribute();
       this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       return true;
     } else {
@@ -115,6 +116,10 @@ export class AuthenticationServices {
   getAttribute() {
     if (this.session && this.session.isValid()) {
       this.authStateService.setCognitoUser(this.cognitoUser);
+
+      this.cognitoUser.getUserAttributes((err, results) => {
+        this.authStateService.setUserAttributes(results);
+      });
     }
   }
 

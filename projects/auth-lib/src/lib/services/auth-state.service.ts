@@ -13,7 +13,7 @@ export class AuthStateService {
   private _isLoggedIn: number = AuthStatesEnum.Loggedout;
   private _isAdmin: boolean;
   private _cognitoUser: any;
-
+  private _userAttributes: any;
 
   _isLoggedInEvent: Subject<number> = new Subject<number>();
   _messageInEvent: Subject<{ message: string, type: string}> = new Subject<{ message: string, type: string}>();
@@ -38,8 +38,17 @@ export class AuthStateService {
     return this._cognitoUser;
   }
 
-  public setCognitoUser(userAttributes) {
-    this._cognitoUser = userAttributes;
+  public get userAttributes(): CognitoUser {
+    return this._userAttributes;
+  }
+
+  public setUserAttributes(userAttributes) {
+    console.log(userAttributes);
+    this._userAttributes = userAttributes;
+  }
+
+  public setCognitoUser(cognitoUser) {
+    this._cognitoUser = cognitoUser;
   }
 
   public get isAdmin(): boolean {
