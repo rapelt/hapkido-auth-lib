@@ -15,6 +15,8 @@
     "cy:start:local": "cypress open",
     "cy:run:ci": " $(npm bin)/cypress run --record --key 7b4f492f-dcf7-41f6-b99a-d7a94b1f6b91 --config baseUrl=http://localhost:8000",
     "cy:ci": "npm run build && run-p --race serve:ci cy:run:ci",
+    "cy:run:ci:no-record": " $(npm bin)/cypress run --config baseUrl=http://localhost:8000",
+    "cy:ci:no-record": "npm run build && run-p --race serve:ci cy:run:ci:no-record",
     "serve:ci": "angular-http-server --path dist/auth-library-project -a localhost -p 8000"
   },
   "publishConfig": {
