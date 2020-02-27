@@ -43,7 +43,6 @@ export class AuthStateService {
   }
 
   public setUserAttributes(userAttributes) {
-    console.log(userAttributes);
     this._userAttributes = userAttributes;
   }
 

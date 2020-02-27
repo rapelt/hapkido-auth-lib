@@ -93,7 +93,7 @@ export class AuthSeviceMock {
     this.authStateService.setUserAttributes( [
       {Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'},
       {Name: 'email', Value: 'rebekahapelt@gmail.com'},
-      {Name: 'email_verified', Value: 'true'}
+      {Name: 'email_verified', Value: 'false'}
 
     ]);
   }
