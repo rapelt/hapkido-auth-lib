@@ -17,4 +17,9 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/other-page');
   }
 
+  navigateVerifyEmail() {
+
+    this.router.navigateByUrl('/verify-email');
+  }
+
 }

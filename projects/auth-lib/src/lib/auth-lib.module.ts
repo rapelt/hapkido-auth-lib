@@ -58,7 +58,7 @@ export class AuthLibModule {
         AuthStateService,
         AuthenticationGuard,
         PasswordResetGuard,
-        ForcePasswordResetGuard
+        ForcePasswordResetGuard,
       ]
     };
   }

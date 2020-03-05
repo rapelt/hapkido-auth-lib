@@ -245,6 +245,7 @@ export class AuthenticationServices {
   sendEmailVerificationCode() {
     this.cognitoUser.getAttributeVerificationCode('email', {
       onSuccess: () => {
+        this.authStateService.navigate(AuthStatesEnum.VerifyEmail);
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});
@@ -258,6 +259,7 @@ export class AuthenticationServices {
     this.cognitoUser.verifyAttribute('email', verificationCode, {
       onSuccess: () => {
         this.getAttribute();
+        this.authStateService.navigate(AuthStatesEnum.LoggedIn);
       },
       onFailure: (err) => {
         this.authStateService._messageInEvent.next({ message: err.message, type: 'error'});

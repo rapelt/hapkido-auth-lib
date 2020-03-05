@@ -1,1 +1,12 @@
 <p>verify-email works!</p>
+<p>1</p>
+
+<form [formGroup]="verifyEmailForm" (ngSubmit)="verifyEmailSubmit()">
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Verification Code</ion-label>
+      <ion-input type="text" formControlName="code"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button type="submit" ion-button block [disabled]="verifyEmailForm.invalid">Verify Email</button>
+</form>

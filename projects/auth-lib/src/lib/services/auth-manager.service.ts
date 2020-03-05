@@ -48,6 +48,14 @@ export class AuthManagerService {
     this.authService.passwordChallenge(password);
   }
 
+  verifyEmail(code: string) {
+    this.authService.verifyEmail(code);
+  }
+
+  applyForVerifyEmail() {
+    this.authService.sendEmailVerificationCode();
+  }
+
   error(message) {
     this.authStateService.sendMessage(message, 'Error');
   }
