@@ -16,6 +16,8 @@ export class AuthStateService {
   private _userAttributes: any;
 
   _isLoggedInEvent: Subject<number> = new Subject<number>();
+  _userAttributesEvent: Subject<number> = new Subject<number>();
+
   _messageInEvent: Subject<{ message: string, type: string}> = new Subject<{ message: string, type: string}>();
 
   constructor(public router: Router) {
@@ -44,6 +46,7 @@ export class AuthStateService {
 
   public setUserAttributes(userAttributes) {
     this._userAttributes = userAttributes;
+    this._userAttributesEvent.next(this._userAttributes);
   }
 
   public setCognitoUser(cognitoUser) {
