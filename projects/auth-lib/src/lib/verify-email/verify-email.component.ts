@@ -10,7 +10,8 @@ import {AuthManagerService} from '../services/auth-manager.service';
  */
 @Component({
   selector: 'auth-verify-email',
-  templateUrl: 'verify-email.component.html'
+  templateUrl: 'verify-email.component.html',
+  styleUrls: ['./verify-email.component.scss']
 })
 export class VerifyEmailComponent implements OnInit {
 

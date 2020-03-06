@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import {AuthStateService} from '../services/auth-state.service';
 import {AuthStatesEnum} from '../models/auth-states.enum';
-import {CognitoUser, CognitoUserPool, ICognitoUserPoolData} from 'amazon-cognito-identity-js';
+import {CognitoUser, CognitoUserAttribute, CognitoUserPool, ICognitoUserPoolData} from 'amazon-cognito-identity-js';
 // import { MessagesService } from '../../messages/messages.service';
 
 @Injectable({
@@ -89,12 +89,11 @@ export class AuthSeviceMock {
 
   getAttribute() {
     const username = 'rebekah';
-    this.authStateService.setCognitoUser({Username: username});
+    this.authStateService.setCognitoUser({Username: username, getUsername: () => username});
     this.authStateService.setUserAttributes( [
-      {Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'},
-      {Name: 'email', Value: 'rebekahapelt@gmail.com'},
-      {Name: 'email_verified', Value: 'false'}
-
+      new CognitoUserAttribute({Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'}),
+      new CognitoUserAttribute({Name: 'email', Value: 'rebekahapelt@gmail.com'}),
+      new CognitoUserAttribute({Name: 'email_verified', Value: 'false'}),
     ]);
   }
 
@@ -156,9 +155,10 @@ export class AuthSeviceMock {
 
   verifyEmail(verificationCode) {
     this.authStateService.setUserAttributes( [
-      {Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'},
-      {Name: 'email', Value: 'rebekahapelt@gmail.com'},
-      {Name: 'email_verified', Value: 'true'}
+      new CognitoUserAttribute({Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'}),
+      new CognitoUserAttribute({Name: 'email', Value: 'rebekahapelt@gmail.com'}),
+
+      new CognitoUserAttribute({Name: 'email_verified', Value: 'true'}),
     ]);
     this.authStateService.navigate(AuthStatesEnum.LoggedIn);
 
