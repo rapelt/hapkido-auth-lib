@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 import {AuthStatesEnum} from '../models/auth-states.enum';
 import {AuthManagerService} from './auth-manager.service';
 import {Router} from '@angular/router';
-import {CognitoUser} from 'amazon-cognito-identity-js';
+import {CognitoUser, CognitoUserAttribute} from 'amazon-cognito-identity-js';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +40,7 @@ export class AuthStateService {
     return this._cognitoUser;
   }
 
-  public get userAttributes(): CognitoUser {
+  public get userAttributes(): CognitoUserAttribute[] {
     return this._userAttributes;
   }
 

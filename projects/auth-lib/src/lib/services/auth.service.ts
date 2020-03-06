@@ -143,20 +143,19 @@ export class AuthenticationServices {
           return reject(err);
         }
 
-        // console.log(
-        //   `${new Date()} - Refreshed session for ${self.cognitoUser.getUsername()}. Valid?: `, session.isValid(),
-        //   ' Admin?:' +  this.isAdmin(session));
-
         this.getAttribute();
 
         if (session.isValid() && this.isAdmin(session)) {
-          this.session = session;
           this.authStateService.setIsAdmin(this.isAdmin(session));
         }
 
-        this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+        if (session.isValid()) {
+          this.session = session;
+          this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+        }
 
         resolve(session);
+
       });
     });
   }
