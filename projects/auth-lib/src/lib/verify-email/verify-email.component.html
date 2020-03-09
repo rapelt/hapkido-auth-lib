@@ -1,11 +1,13 @@
+<div class="verify-email-display">
+  <p>Please check your email for a verificate code.</p>
+  <form [formGroup]="verifyEmailForm" (ngSubmit)="verifyEmailSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Verification Code</ion-label>
+        <ion-input class="cy-verify-code-input" type="text" formControlName="code"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" expand="block" class="cy-verify-email" [disabled]="verifyEmailForm.invalid">Verify Email</ion-button>
+  </form>
 
-<p>Please check your email for a verificate code.</p>
-<form [formGroup]="verifyEmailForm" (ngSubmit)="verifyEmailSubmit()">
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Verification Code</ion-label>
-      <ion-input type="text" formControlName="code"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button type="submit" expand="block" [disabled]="verifyEmailForm.invalid">Verify Email</ion-button>
-</form>
+</div>
