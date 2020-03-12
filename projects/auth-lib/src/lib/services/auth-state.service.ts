@@ -28,11 +28,15 @@ export class AuthStateService {
   }
 
    setIsLoggedIn(isLoggedIn: number) {
-    this._isLoggedIn = isLoggedIn;
-    this._isLoggedInEvent.next(this._isLoggedIn);
+     console.log('Auth State Service - Send Logged in event ' + isLoggedIn);
+
+     this._isLoggedIn = isLoggedIn;
+     this._isLoggedInEvent.next(this._isLoggedIn);
   }
 
   sendMessage(message: string, type: string) {
+    console.log('Auth State Service - Send Message event');
+
     this._messageInEvent.next({message, type});
   }
 
@@ -50,6 +54,8 @@ export class AuthStateService {
   }
 
   public setCognitoUser(cognitoUser) {
+    console.log('Auth State Service - Set Cognito user ' + cognitoUser);
+
     this._cognitoUser = cognitoUser;
   }
 
@@ -64,9 +70,13 @@ export class AuthStateService {
   navigate(isLoggedIn) {
     switch (isLoggedIn) {
       case AuthStatesEnum.Loggedout:
+        console.log('Auth State Service - Navigate to Sign In');
+
         this.router.navigateByUrl('sign-in');
         break;
       case AuthStatesEnum.LoggedIn:
+        console.log('Auth State Service - Navigate to Home');
+
         this.router.navigateByUrl('home');
         break;
       case AuthStatesEnum.SetNewPassword:

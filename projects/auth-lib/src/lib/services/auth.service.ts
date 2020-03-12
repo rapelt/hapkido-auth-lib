@@ -34,7 +34,7 @@ export class AuthenticationServices {
   private userAttributes;
 
   constructor(@Inject('config') private config, private authStateService: AuthStateService) {
-    console.log('using real Cognito');
+    console.log('Auth Service - Constructor', 'Using real Cognito');
 
     if (this.config.feature_toggle.cognito_login) {
       this.poolData = {
@@ -125,11 +125,14 @@ export class AuthenticationServices {
 
 
   private refreshOrResetCreds() {
+    console.log('Auth Service - refresh creds');
     this.cognitoUser = this.userPool.getCurrentUser();
 
     if (this.cognitoUser !== null) {
+      console.log('Auth Service - Has a user');
       this.refreshSession();
     } else {
+      console.log('Auth Service - No user');
       this.resetCreds();
     }
   }
@@ -143,6 +146,8 @@ export class AuthenticationServices {
           return reject(err);
         }
 
+        console.log('Auth Service - has a session');
+
         this.getAttribute();
 
         if (session.isValid() && this.isAdmin(session)) {
@@ -151,6 +156,7 @@ export class AuthenticationServices {
 
         if (session.isValid()) {
           this.session = session;
+          console.log('Auth Service - Session is valid and Setting is logged in');
           this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
         }
 
@@ -162,6 +168,7 @@ export class AuthenticationServices {
 
   private resetCreds(clearCache: boolean = false) {
     this.cognitoUser = null;
+    console.log('Auth Service - Setting as logged out');
     this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
   }
 
