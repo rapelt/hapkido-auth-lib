@@ -13,9 +13,15 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private router: Router, private authState: AuthenticationServices) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log('Auth Guard - can Activate');
+
     if (this.authState.checkIfSessionValid()) {
+      console.log('Auth Guard - session is valid');
+
       return true;
     } else {
+      console.log('Auth Guard - session is invalid');
+
       this.router.navigateByUrl('/sign-in');
     }
   }
