@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { AuthStateService } from 'auth-lib';
+import {AuthenticationServices, AuthStateService} from 'auth-lib';
 
 
 @Component({
@@ -10,12 +10,16 @@ import { AuthStateService } from 'auth-lib';
 export class AppComponent implements OnInit {
   title = 'auth-library-project-2';
 
-  constructor(public authService: AuthStateService) {
+  constructor(public authService: AuthStateService, public auth: AuthenticationServices) {
   }
 
   ngOnInit(): void {
-    this.authService._messageInEvent.subscribe((err) => {
-      console.log(err.message);
+    this.auth.load().then(() => {
+      console.log('App Init');
+      this.authService._messageInEvent.subscribe((err) => {
+        console.log(err.message);
+      });
     });
+
   }
 }

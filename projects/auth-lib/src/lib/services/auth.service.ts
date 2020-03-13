@@ -3,9 +3,6 @@ import {AuthStateService} from './auth-state.service';
 (window as any).global = window;
 
 import {Inject, Injectable} from '@angular/core';
-import { Router } from '@angular/router';
-// import { AppState } from '@capacitor/core';
-// import { Store } from '@ngrx/store';
 import {
   AuthenticationDetails,
   CognitoUser,
@@ -15,13 +12,8 @@ import {
 } from 'amazon-cognito-identity-js';
 import { from } from 'rxjs';
 
-// import * as jwt from 'jsonwebtoken';
-import * as jwt from '@auth0/angular-jwt';
 import {AuthStatesEnum} from '../models/auth-states.enum';
 import {JwtHelperService} from '@auth0/angular-jwt';
-
-// import { MessagesService } from '../../messages/messages.service';
-// import { ResetPasswordRequired, SetUserAttributes, SignInSuccess } from './authentication.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +26,14 @@ export class AuthenticationServices {
   private userAttributes;
 
   constructor(@Inject('config') private config, private authStateService: AuthStateService) {
-    console.log('Auth Service - Constructor', 'Using real Cognito');
+      console.log('Auth Service - Constructor', 'Using real Cognito');
+      console.log(authStateService);
+      // this.load();
+   }
+
+
+  public load(): Promise<any> {
+    console.log('Auth State Load');
 
     if (this.config.feature_toggle.cognito_login) {
       this.poolData = {
@@ -42,7 +41,7 @@ export class AuthenticationServices {
         ClientId: this.config.aws_user_pools_web_client_id
       };
       this.userPool = new CognitoUserPool(this.poolData);
-      this.refreshOrResetCreds();
+      return this.refreshOrResetCreds();
     }
   }
 
@@ -124,14 +123,17 @@ export class AuthenticationServices {
   }
 
 
-  private refreshOrResetCreds() {
+  private refreshOrResetCreds(): Promise<any> {
     console.log('Auth Service - refresh creds');
     this.cognitoUser = this.userPool.getCurrentUser();
 
     if (this.cognitoUser !== null) {
       console.log('Auth Service - Has a user');
-      this.refreshSession();
+      return this.refreshSession();
     } else {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
       console.log('Auth Service - No user');
       this.resetCreds();
     }
@@ -158,10 +160,10 @@ export class AuthenticationServices {
           this.session = session;
           console.log('Auth Service - Session is valid and Setting is logged in');
           this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+          resolve(session);
         }
 
-        resolve(session);
-
+        return reject();
       });
     });
   }
