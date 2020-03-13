@@ -55,12 +55,12 @@ export class AuthSeviceMock {
     const isLI = localStorage.getItem('login');
     console.log('is logged in ', isLI);
     if (isLI === 'true') {
-      this.getAttribute();
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+      // this.getAttribute();
+      // this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       console.log('Session valid');
       return true;
     } else {
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      // this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
       console.log('Session invalid');
       return false;
     }

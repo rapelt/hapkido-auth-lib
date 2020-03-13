@@ -49,12 +49,12 @@ export class AuthenticationServices {
   checkIfSessionValid(): boolean {
     if (this.session && this.session.isValid()) {
       console.log('Session Valid');
-      this.getAttribute();
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       return true;
+      // this.getAttribute();
+      // this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
     } else {
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
-      this.authStateService.navigate(AuthStatesEnum.Loggedout);
+      // this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+      // this.authStateService.navigate(AuthStatesEnum.Loggedout);
       console.log('Session invalid');
       return false;
     }
