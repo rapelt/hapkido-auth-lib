@@ -7,6 +7,7 @@ import {VerifyEmailComponent} from './verify-email/verify-email.component';
 import {PasswordResetGuard} from './guards/password-reset.guard';
 import {AuthenticationGuard} from './guards/authentication.guard';
 import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
+import {NoAuthenticationGuard} from './guards/no-authentication.guard';
 
 export const routes: Routes = [
   { path: '',
@@ -15,7 +16,8 @@ export const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: SignInComponent
+    component: SignInComponent,
+    canActivate: [NoAuthenticationGuard]
   },
    {
     path: 'force-password-change',
@@ -29,7 +31,8 @@ export const routes: Routes = [
   },
   {
     path: 'forgot-password',
-    component: ApplyPasswordResetComponent
+    component: ApplyPasswordResetComponent,
+    canActivate: [NoAuthenticationGuard]
   },
   {
     path: 'verify-email',

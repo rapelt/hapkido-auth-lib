@@ -17,6 +17,7 @@ import { routes } from './authentication-routing.module';
 import {AuthenticationGuard} from './guards/authentication.guard';
 import {PasswordResetGuard} from './guards/password-reset.guard';
 import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
+import {NoAuthenticationGuard} from './guards/no-authentication.guard';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ export class AuthLibModule {
         AuthenticationGuard,
         PasswordResetGuard,
         ForcePasswordResetGuard,
+        NoAuthenticationGuard
       ]
     };
   }
