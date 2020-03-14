@@ -27,8 +27,6 @@ export class AuthenticationServices {
 
   constructor(@Inject('config') private config, private authStateService: AuthStateService) {
       console.log('Auth Service - Constructor', 'Using real Cognito');
-      console.log(authStateService);
-      // this.load();
    }
 
 
@@ -49,11 +47,7 @@ export class AuthenticationServices {
     if (this.session && this.session.isValid()) {
       console.log('Session Valid');
       return true;
-      // this.getAttribute();
-      // this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
     } else {
-      // this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
-      // this.authStateService.navigate(AuthStatesEnum.Loggedout);
       console.log('Session invalid');
       return false;
     }
@@ -126,6 +120,8 @@ export class AuthenticationServices {
   private refreshOrResetCreds(): Promise<any> {
     console.log('Auth Service - refresh creds');
     this.cognitoUser = this.userPool.getCurrentUser();
+    this.authStateService.setCognitoUser(this.cognitoUser);
+    this.getAttribute();
 
     if (this.cognitoUser !== null) {
       console.log('Auth Service - Has a user');

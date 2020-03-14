@@ -17,7 +17,7 @@ export const routes: Routes = [
   {
     path: 'sign-in',
     component: SignInComponent,
-    canActivate: [NoAuthenticationGuard]
+    canActivate: [NoAuthenticationGuard],
   },
    {
     path: 'force-password-change',

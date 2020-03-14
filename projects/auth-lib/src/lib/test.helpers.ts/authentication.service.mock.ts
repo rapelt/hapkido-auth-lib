@@ -21,8 +21,15 @@ export class AuthSeviceMock {
 
   constructor(@Inject('config') private config, private authStateService: AuthStateService) {
     console.log('using Mock Cognito');
+
+  }
+
+  public load(): Promise<any> {
+    console.log('Auth State Load');
     const isLoggedIn = localStorage.getItem('login');
-    this.refreshOrResetCreds(isLoggedIn);
+    return this.refreshOrResetCreds(isLoggedIn);
+
+
   }
 
   signIn(username, password) {
@@ -55,12 +62,9 @@ export class AuthSeviceMock {
     const isLI = localStorage.getItem('login');
     console.log('is logged in ', isLI);
     if (isLI === 'true') {
-      // this.getAttribute();
-      // this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
       console.log('Session valid');
       return true;
     } else {
-      // this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
       console.log('Session invalid');
       return false;
     }
@@ -98,16 +102,26 @@ export class AuthSeviceMock {
   }
 
 
-  private refreshOrResetCreds(isLoggedIn) {
-    if (isLoggedIn === 'true') {
-      // this.successfulSignIn();
-      this.getAttribute();
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
-      localStorage.setItem('login', 'true');
-    } else {
-      this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
-      localStorage.setItem('login', 'false');
-    }
+  private refreshOrResetCreds(isLoggedIn): Promise<any> {
+    console.log('Auth Service - refresh creds');
+    const username = 'rebekah';
+    this.authStateService.setCognitoUser({Username: username, getUsername: () => username});
+    this.getAttribute();
+
+      if (isLoggedIn === 'true') {
+        this.getAttribute();
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
+        localStorage.setItem('login', 'true');
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      } else {
+        this.authStateService.setIsLoggedIn(AuthStatesEnum.Loggedout);
+        localStorage.setItem('login', 'false');
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      }
   }
 
   isAdmin(session) {
