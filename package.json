@@ -10,7 +10,7 @@
     "test-all": "npm run test-ci && npm run cy:ci",
     "e2e": "cypress open",
     "test-ci": "ng test auth-lib --watch=false --browsers=ChromeHeadless",
-    "build-ci": "ng build auth-lib",
+    "build-ci": "ng build auth-lib --prod",
     "watch-lib": "watch 'npm run build-ci' ./projects",
     "cy:start:local": "cypress open",
     "cy:run:ci": " $(npm bin)/cypress run --record --key 7b4f492f-dcf7-41f6-b99a-d7a94b1f6b91 --config baseUrl=http://localhost:8000",
