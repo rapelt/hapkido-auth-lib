@@ -1,5 +1,4 @@
 import {Injectable, ModuleWithProviders, NgModule} from '@angular/core';
-import { AuthLibComponent } from './auth-lib.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -18,7 +17,15 @@ import {AuthenticationGuard} from './guards/authentication.guard';
 import {PasswordResetGuard} from './guards/password-reset.guard';
 import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
 import {NoAuthenticationGuard} from './guards/no-authentication.guard';
+import {AuthLibComponent} from './auth-lib.component';
 
+export function AuthenticationServicesFactory(
+  config
+) {
+  return config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? AuthSeviceMock : AuthenticationServices;
+}
+
+// @dynamic
 @NgModule({
   declarations: [
     AuthLibComponent,
@@ -41,12 +48,11 @@ import {NoAuthenticationGuard} from './guards/no-authentication.guard';
   exports: [AuthLibComponent, SignOutComponent]
 })
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthLibModule {
-  public static forRoot(config: any): ModuleWithProviders<AuthLibModule> {
+  public static forRoot(config: any): ModuleWithProviders<any> {
     return {
       ngModule: AuthLibModule,
       providers: [
@@ -54,16 +60,17 @@ export class AuthLibModule {
           provide: 'config',
           useValue: config
         },
-         config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
+        config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
           : AuthenticationServices,
         AuthStateService,
         AuthenticationGuard,
         PasswordResetGuard,
         ForcePasswordResetGuard,
         NoAuthenticationGuard
-      ]
+      ],
     };
   }
 }
+
 
 
