@@ -46,7 +46,7 @@ import {NoAuthenticationGuard} from './guards/no-authentication.guard';
   providedIn: 'root'
 })
 export class AuthLibModule {
-  public static forRoot(config: any): ModuleWithProviders {
+  public static forRoot(config: any): ModuleWithProviders<AuthLibModule> {
     return {
       ngModule: AuthLibModule,
       providers: [
