@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "auth-lib": [
+      "hapkido-auth-lib": [
         "dist/auth-lib"
       ],
-      "auth-lib/*": [
+      "hapkido-auth-lib/*": [
         "dist/auth-lib/*"
       ]
     }

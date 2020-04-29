@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {AuthLibModule} from '../../projects/auth-lib/src/lib/auth-lib.module';
-import {AuthenticationGuard} from 'auth-lib';
+import {AuthenticationGuard} from 'hapkido-auth-lib';
 import {OtherPageComponent} from './other-page/other-page.component';
 
 

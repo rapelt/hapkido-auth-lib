@@ -3,7 +3,7 @@ import { NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthLibModule} from 'auth-lib';
+import { AuthLibModule } from 'hapkido-auth-lib';
 import {IonicModule} from '@ionic/angular';
 import {config} from '../environments/environment';
 import {HomeComponent} from './home/home.component';
