@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ViewEncapsulation} from '@angular/cli/lib/config/schema';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'auth-component-lib',

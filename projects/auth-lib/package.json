@@ -1,16 +1,16 @@
 {
   "name": "hapkido-auth-lib",
-  "version": "0.1.23",
+  "version": "1.0.01",
   "author": {
     "name": "Rebekah Higgins",
     "email": "rebekahapelt+github@gmail.com"
   },
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@ionic/angular": "^4.11.5",
-    "amazon-cognito-identity-js": "^3.0.9",
-    "aws-sdk": "^2.418.0",
+    "@angular/common": "~9.1.3",
+    "@angular/core": "~9.1.3",
+    "@ionic/angular": "^5.0.7",
+    "amazon-cognito-identity-js": "^3.2.4",
+    "aws-sdk": "^2.616.0",
     "jsonwebtoken": "^8.5.0",
     "@auth0/angular-jwt": "^4.0.0"
   },
