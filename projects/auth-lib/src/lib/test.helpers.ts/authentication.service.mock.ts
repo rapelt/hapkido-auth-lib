@@ -93,7 +93,11 @@ export class AuthSeviceMock {
 
   getAttribute() {
     const username = 'rebekah';
-    this.authStateService.setCognitoUser({Username: username, getUsername: () => username});
+    this.authStateService.setCognitoUser({
+      Username: username,
+      getUsername: () => username,
+      getSignInUserSession: () => ({accessToken: 'blarg'})
+    });
     this.authStateService.setUserAttributes( [
       new CognitoUserAttribute({Name: 'sub', Value: '4a4eb79c-5898-4de7-8540-153515c25f80'}),
       new CognitoUserAttribute({Name: 'email', Value: 'rebekahapelt@gmail.com'}),
