@@ -105,7 +105,11 @@ export class AuthSeviceMock {
   private refreshOrResetCreds(isLoggedIn): Promise<any> {
     console.log('Auth Service - refresh creds');
     const username = 'rebekah';
-    this.authStateService.setCognitoUser({Username: username, getUsername: () => username});
+    this.authStateService.setCognitoUser({
+      Username: username,
+      getUsername: () => username,
+      getSignInUserSession: () => ({accessToken: 'blarg'})
+    });
     this.getAttribute();
 
       if (isLoggedIn === 'true') {
