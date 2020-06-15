@@ -8,6 +8,7 @@ import {config} from '../test.helpers.ts/test.config';
 import {AuthenticationServices} from '../services/auth.service';
 import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 import {AuthManagerService} from '../services/auth-manager.service';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('ForcePasswordResetComponent', () => {
   let component: ForcePasswordResetComponent;
@@ -15,7 +16,7 @@ describe('ForcePasswordResetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForcePasswordResetComponent ],
+      declarations: [ ForcePasswordResetComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,

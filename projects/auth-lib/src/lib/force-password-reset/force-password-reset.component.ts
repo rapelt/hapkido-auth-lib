@@ -5,7 +5,7 @@ import {AuthManagerService} from '../services/auth-manager.service';
 @Component({
   selector: 'auth-force-password-reset',
   templateUrl: './force-password-reset.component.html',
-  styleUrls: ['./force-password-reset.component.css']
+  styleUrls: ['./force-password-reset.component.css', '../common.scss']
 })
 export class ForcePasswordResetComponent implements OnInit {
 

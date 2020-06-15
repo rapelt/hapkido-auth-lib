@@ -9,6 +9,7 @@ import {AuthLibModule} from '../auth-lib.module';
 import {config} from '../test.helpers.ts/test.config';
 import {AuthenticationServices} from '../services/auth.service';
 import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -16,7 +17,7 @@ describe('SignInComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ],
+      declarations: [ SignInComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,

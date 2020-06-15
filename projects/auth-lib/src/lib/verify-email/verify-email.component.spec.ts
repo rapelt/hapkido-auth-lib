@@ -9,6 +9,7 @@ import {AuthManagerService} from '../services/auth-manager.service';
 import {config} from '../test.helpers.ts/test.config';
 import {AuthenticationServices} from '../services/auth.service';
 import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
@@ -16,7 +17,7 @@ describe('VerifyEmailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerifyEmailComponent ],
+      declarations: [ VerifyEmailComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,

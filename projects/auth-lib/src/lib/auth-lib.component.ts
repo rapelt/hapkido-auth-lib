@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'auth-component-lib',
   templateUrl: './auth-lib.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./auth-lib.component.scss'],
 })
 

@@ -5,7 +5,7 @@ import {AuthManagerService} from '../services/auth-manager.service';
 @Component({
   selector: 'auth-set-new-password',
   templateUrl: './set-new-password.component.html',
-  styleUrls: ['./set-new-password.component.css']
+  styleUrls: ['./set-new-password.component.css', '../common.scss']
 })
 export class SetNewPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
@@ -32,6 +32,10 @@ export class SetNewPasswordComponent implements OnInit {
     } else {
       this.authManager.error('Passwords are not the same');
     }
+  }
+
+  backBTN() {
+    this.authManager.back();
   }
 
 }

@@ -9,6 +9,7 @@ import {AuthStateService} from '../services/auth-state.service';
 import {AuthenticationServices} from '../services/auth.service';
 import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 import {config} from '../test.helpers.ts/test.config';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('SetNewPasswordComponent', () => {
   let component: SetNewPasswordComponent;
@@ -16,7 +17,7 @@ describe('SetNewPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetNewPasswordComponent ],
+      declarations: [ SetNewPasswordComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,

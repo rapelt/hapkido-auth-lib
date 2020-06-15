@@ -7,7 +7,8 @@ import {IonicModule} from '@ionic/angular';
 import {config} from '../environments/environment';
 import {HomeComponent} from './home/home.component';
 import { OtherPageComponent } from './other-page/other-page.component';
-import {AuthLibModule} from 'hapkido-auth-lib';
+import {AuthLibModule} from '../../projects/auth-lib/src/lib/auth-lib.module';
+// import {AuthLibModule} from 'hapkido-auth-lib';
 
 @NgModule({
   declarations: [

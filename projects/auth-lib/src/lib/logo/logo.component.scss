@@ -1,0 +1,14 @@
+.logo {
+  margin: 20px 20px 20px 20px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px;
+}

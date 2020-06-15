@@ -8,6 +8,7 @@ import {config} from '../test.helpers.ts/test.config';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AuthenticationServices} from '../services/auth.service';
 import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('ApplyPasswordResetComponent', () => {
   let component: ApplyPasswordResetComponent;
@@ -15,7 +16,7 @@ describe('ApplyPasswordResetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplyPasswordResetComponent ],
+      declarations: [ ApplyPasswordResetComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,

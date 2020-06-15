@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationServices, AuthStateService} from 'hapkido-auth-lib';
+import {AuthStateService} from '../../projects/auth-lib/src/lib/services/auth-state.service';
+import {AuthenticationServices} from '../../projects/auth-lib/src/lib/services/auth.service';
+// import {AuthenticationServices, AuthStateService} from 'hapkido-auth-lib';
 
 
 @Component({

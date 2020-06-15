@@ -6,7 +6,7 @@ import {AuthManagerService} from '../services/auth-manager.service';
 @Component({
   selector: 'auth-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss', '../common.scss']
 })
 export class SignInComponent implements OnInit {
 

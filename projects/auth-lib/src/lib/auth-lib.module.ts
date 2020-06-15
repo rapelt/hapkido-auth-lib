@@ -18,6 +18,7 @@ import {PasswordResetGuard} from './guards/password-reset.guard';
 import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
 import {NoAuthenticationGuard} from './guards/no-authentication.guard';
 import {AuthLibComponent} from './auth-lib.component';
+import { LogoComponent } from './logo/logo.component';
 
 export function AuthenticationServicesFactory(
   config
@@ -34,7 +35,8 @@ export function AuthenticationServicesFactory(
     ForcePasswordResetComponent,
     ApplyPasswordResetComponent,
     SetNewPasswordComponent,
-    VerifyEmailComponent],
+    VerifyEmailComponent,
+    LogoComponent],
   imports: [
     IonicModule,
     ReactiveFormsModule,

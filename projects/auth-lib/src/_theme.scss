@@ -1,0 +1,7 @@
+:host {
+  background-color: aqua;
+}
+
+:host-context(html) {
+  background-color: black;
+}

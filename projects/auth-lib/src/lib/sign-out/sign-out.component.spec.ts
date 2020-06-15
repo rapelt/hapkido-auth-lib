@@ -8,6 +8,7 @@ import {AuthSeviceMock} from '../test.helpers.ts/authentication.service.mock';
 import {AuthenticationServices} from '../services/auth.service';
 import {config} from '../../../../../src/environments/environment.test';
 import {RouterTestingModule} from '@angular/router/testing';
+import {LogoComponent} from '../logo/logo.component';
 
 describe('SignOutComponent', () => {
   let component: SignOutComponent;
@@ -15,7 +16,7 @@ describe('SignOutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignOutComponent ],
+      declarations: [ SignOutComponent, LogoComponent ],
       imports: [
         IonicModule,
         FormsModule,
