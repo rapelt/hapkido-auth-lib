@@ -8,13 +8,14 @@ script:
 - npm run test-ci
 - npm run build-ci
 - npm run cy:ci:no-record
-before_deploy:
-- cd dist/auth-lib
-deploy:
-  provider: npm
-  email: rebekahapelt@gmail.com
-  edge: true
-  api_key:
-    secure: OyjppuFYSMLeeoIBElt31mXjZ2LL9nB2xyJHhqtS8nL7XCiJJNoUUTklENi5n7cqZbRfaLccpdSQ4PtthExKluQZbsA+sbjOpWppV1P8RcEJQaifP+M/KFyFtwtbkZH+7b4pNCFAO6wm5yUVnbXmxvMZ8TUfpTDag2zndZjjkzzjAHFhnjbJgEYbuRkxWXgXjJrw7c51q5PDyo722VoSiDjNWI9oHqe3/UKf7OJU9vgzchsbp9rPlssHEoqoWKBmzUgugw0YMbM9u8wpzzCvbOfeOY6zm7LRNUNOWXO6+p1MeKlM28qmgu/Vdzh1IfsPZzqSvJ2eZWNpPgtZ3iw4V83NPkWU7T+PeunlvpSQV5TJpDXnusGqa33JT8zl1+/SMnoVWkaPvOs0/5g8MCAohlI18SpBDjXl6acdiq2w5I73GvSEksZHveRaSoRLJqUCdrNYYfUER7YhWIHNaw971m0ah6EyKoe34S7FFHlufM+P78VtntLBSQVxvDGEZZpPgqP6NdmXWqgt8VZEfI62agHuGn1evYqcJQN6LhwCMeRs5XER6xn4hOlyPK9m6xPUaafa7xrZof389syRJQ69jupC5Gpvcr++b7sNwQvMT33HBL4mgVHfDCgah6HtUxkqNfn05IecEddIcr7TkmOZ077wWSHPGkirjwgolK7aLKA=
-  on:
-    repo: rapelt/hapkido-auth-lib
+#Deploying is broken since Angular 9
+#before_deploy:
+#- cd dist/auth-lib
+#deploy:
+#  provider: npm
+#  email: rebekahapelt@gmail.com
+#  edge: true
+#  api_key:
+#    secure: OyjppuFYSMLeeoIBElt31mXjZ2LL9nB2xyJHhqtS8nL7XCiJJNoUUTklENi5n7cqZbRfaLccpdSQ4PtthExKluQZbsA+sbjOpWppV1P8RcEJQaifP+M/KFyFtwtbkZH+7b4pNCFAO6wm5yUVnbXmxvMZ8TUfpTDag2zndZjjkzzjAHFhnjbJgEYbuRkxWXgXjJrw7c51q5PDyo722VoSiDjNWI9oHqe3/UKf7OJU9vgzchsbp9rPlssHEoqoWKBmzUgugw0YMbM9u8wpzzCvbOfeOY6zm7LRNUNOWXO6+p1MeKlM28qmgu/Vdzh1IfsPZzqSvJ2eZWNpPgtZ3iw4V83NPkWU7T+PeunlvpSQV5TJpDXnusGqa33JT8zl1+/SMnoVWkaPvOs0/5g8MCAohlI18SpBDjXl6acdiq2w5I73GvSEksZHveRaSoRLJqUCdrNYYfUER7YhWIHNaw971m0ah6EyKoe34S7FFHlufM+P78VtntLBSQVxvDGEZZpPgqP6NdmXWqgt8VZEfI62agHuGn1evYqcJQN6LhwCMeRs5XER6xn4hOlyPK9m6xPUaafa7xrZof389syRJQ69jupC5Gpvcr++b7sNwQvMT33HBL4mgVHfDCgah6HtUxkqNfn05IecEddIcr7TkmOZ077wWSHPGkirjwgolK7aLKA=
+#  on:
+#    repo: rapelt/hapkido-auth-lib
