@@ -40,4 +40,9 @@ HOW TO UPDATE NPM VERSION NUMBER
 You have to update the library package json not the test package. 
 npm version minor
 
+Then run
+npm run build-ci from the root project
 
+Cd into the dist/auth-lib folder
+
+npm run publish

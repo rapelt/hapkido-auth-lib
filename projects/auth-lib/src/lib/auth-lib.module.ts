@@ -20,12 +20,6 @@ import {NoAuthenticationGuard} from './guards/no-authentication.guard';
 import {AuthLibComponent} from './auth-lib.component';
 import { LogoComponent } from './logo/logo.component';
 
-export function AuthenticationServicesFactory(
-  config
-) {
-  return config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? AuthSeviceMock : AuthenticationServices;
-}
-
 // @dynamic
 @NgModule({
   declarations: [
@@ -50,6 +44,7 @@ export function AuthenticationServicesFactory(
   exports: [AuthLibComponent, SignOutComponent]
 })
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -62,7 +57,9 @@ export class AuthLibModule {
           provide: 'config',
           useValue: config
         },
-        (config.ionicEnvName === 'local' || config.ionicEnvName === 'test') && config.feature_toggle.cognito_login === false ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
+        (config.ionicEnvName === 'local' || config.ionicEnvName === 'test')
+        && config.feature_toggle.cognito_login === false ?
+          { provide: AuthenticationServices, useClass: AuthSeviceMock }
           : AuthenticationServices,
         AuthStateService,
         AuthenticationGuard,
