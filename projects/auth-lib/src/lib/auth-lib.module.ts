@@ -62,7 +62,7 @@ export class AuthLibModule {
           provide: 'config',
           useValue: config
         },
-        config.ionicEnvName === 'local' || config.ionicEnvName === 'test' ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
+        (config.ionicEnvName === 'local' || config.ionicEnvName === 'test') && config.feature_toggle.cognito_login === false ? { provide: AuthenticationServices, useClass: AuthSeviceMock }
           : AuthenticationServices,
         AuthStateService,
         AuthenticationGuard,
