@@ -121,11 +121,11 @@ export class AuthenticationServices {
     console.log('Auth Service - refresh creds');
     this.cognitoUser = this.userPool.getCurrentUser();
     this.authStateService.setCognitoUser(this.cognitoUser);
-    this.getAttribute();
 
     if (this.cognitoUser !== null) {
       console.log('Auth Service - Has a user');
       return this.refreshSession();
+      this.getAttribute();
     } else {
       return new Promise((resolve, reject) => {
         resolve();
@@ -146,7 +146,6 @@ export class AuthenticationServices {
 
         console.log('Auth Service - has a session');
 
-        this.getAttribute();
 
         if (session.isValid() && this.isAdmin(session)) {
           this.authStateService.setIsAdmin(this.isAdmin(session));
@@ -154,6 +153,7 @@ export class AuthenticationServices {
 
         if (session.isValid()) {
           this.session = session;
+          this.getAttribute();
           console.log('Auth Service - Session is valid and Setting is logged in');
           this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
           resolve(session);

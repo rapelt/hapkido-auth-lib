@@ -12,7 +12,7 @@ import {AuthenticationServices} from '../../projects/auth-lib/src/lib/services/a
 export class AppComponent implements OnInit {
   title = 'auth-library-project-2';
 
-  constructor(public authService: AuthStateService, public auth: AuthenticationServices) {
+  constructor(public authService: AuthStateService, public auth: AuthenticationServices, private authState: AuthStateService) {
   }
 
   ngOnInit(): void {
@@ -21,6 +21,11 @@ export class AppComponent implements OnInit {
       this.authService._messageInEvent.subscribe((err) => {
         console.log(err.message);
       });
+
+    });
+
+    this.authState._userAttributesEvent.pipe().subscribe(isLoggedIn => {
+      console.log(this.authState.userAttributes);
     });
 
   }
