@@ -1,8 +1,8 @@
 <!--<ion-button *ngIf="isSignedIn" type="button" class="cy-sign-out" (click)="logout()">Logout</ion-button>-->
 
 
-<ion-item button (click)="logout()" class="cy-sign-out" >
-  <ion-icon slot="start" color="tertiary" name="log-out"></ion-icon>
+<ion-item button (click)="logout()" class="cy-sign-out" [lines]="config.lines" [detail]="config.detail" [routerDirection]="config.routerDirection">
+  <ion-icon slot="start" [color]="config.iconColor" name="log-out"></ion-icon>
   <ion-label>
     Sign Out
   </ion-label>

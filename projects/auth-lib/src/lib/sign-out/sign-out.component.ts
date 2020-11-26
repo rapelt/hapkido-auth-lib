@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthStateService} from '../services/auth-state.service';
 import {AuthenticationServices} from '../services/auth.service';
 
@@ -8,6 +8,14 @@ import {AuthenticationServices} from '../services/auth.service';
   styleUrls: ['./sign-out.component.css']
 })
 export class SignOutComponent implements OnInit {
+
+  @Input()
+  config = {
+    lines: 'inset',
+    detail: false,
+    routerDirection: 'root',
+    iconColor: 'tertiary'
+  };
 
   isSignedIn;
 
