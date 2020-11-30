@@ -80,8 +80,10 @@ export class AuthSeviceMock {
     this.getAttribute();
     this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
     this.authStateService.navigate(AuthStatesEnum.LoggedIn);
-
     localStorage.setItem('login', 'true');
+    this.authStateService.setIsAdmin(this.isAdmin(null));
+    this.authStateService.setIsStudent(this.isStudent(null));
+
   }
 
 
@@ -116,7 +118,7 @@ export class AuthSeviceMock {
     });
     this.getAttribute();
 
-      if (isLoggedIn === 'true') {
+    if (isLoggedIn === 'true') {
         this.getAttribute();
         this.authStateService.setIsLoggedIn(AuthStatesEnum.LoggedIn);
         localStorage.setItem('login', 'true');
@@ -133,6 +135,10 @@ export class AuthSeviceMock {
   }
 
   isAdmin(session) {
+    return true;
+  }
+
+  isStudent(session) {
     return true;
   }
 

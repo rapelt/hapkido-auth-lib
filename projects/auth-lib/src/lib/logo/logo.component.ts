@@ -15,4 +15,8 @@ export class LogoComponent implements OnInit {
     this.imageUrl = this.config.static_image_location + this.config.default_logo;
   }
 
+  projectName(): string {
+    return this.config.projectName;
+  }
+
 }

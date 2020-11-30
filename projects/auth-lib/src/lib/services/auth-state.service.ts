@@ -12,6 +12,7 @@ export class AuthStateService {
 
   private _isLoggedIn: number = AuthStatesEnum.Loggedout;
   private _isAdmin: boolean;
+  private _isStudent: boolean;
   private _cognitoUser: any;
   private _userAttributes: any;
 
@@ -65,6 +66,14 @@ export class AuthStateService {
 
   setIsAdmin(isAdmin: boolean) {
     this._isAdmin = isAdmin;
+  }
+
+  public get isStudent(): boolean {
+    return this._isStudent;
+  }
+
+  setIsStudent(isStudent: boolean) {
+    this._isStudent = isStudent;
   }
 
   navigate(isLoggedIn) {

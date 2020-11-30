@@ -19,6 +19,8 @@ import {ForcePasswordResetGuard} from './guards/force-password-reset.guard';
 import {NoAuthenticationGuard} from './guards/no-authentication.guard';
 import {AuthLibComponent} from './auth-lib.component';
 import { LogoComponent } from './logo/logo.component';
+import {StudentGuard} from './guards/student.guard';
+import {AdminGuard} from './guards/admin.guard';
 
 // @dynamic
 @NgModule({
@@ -65,7 +67,9 @@ export class AuthLibModule {
         AuthenticationGuard,
         PasswordResetGuard,
         ForcePasswordResetGuard,
-        NoAuthenticationGuard
+        NoAuthenticationGuard,
+        StudentGuard,
+        AdminGuard
       ],
     };
   }

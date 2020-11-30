@@ -5,6 +5,8 @@ import {HomeComponent} from './home/home.component';
 import {OtherPageComponent} from './other-page/other-page.component';
 import {AuthLibModule} from '../../projects/auth-lib/src/lib/auth-lib.module';
 import {AuthenticationGuard} from '../../projects/auth-lib/src/lib/guards/authentication.guard';
+import {AdminGuard} from '../../projects/auth-lib/src/lib/guards/admin.guard';
+import {StudentGuard} from '../../projects/auth-lib/src/lib/guards/student.guard';
 
 
 const routes: Routes = [

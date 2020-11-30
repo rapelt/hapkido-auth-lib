@@ -92,6 +92,8 @@ export class AuthenticationServices {
       this.authStateService.navigate(AuthStatesEnum.LoggedIn);
     }
     this.authStateService.setIsAdmin(this.isAdmin(session));
+    this.authStateService.setIsStudent(this.isStudent(session));
+
   }
 
   newPasswordIsRequired(userAttributes, requiredAttributes) {
@@ -151,6 +153,10 @@ export class AuthenticationServices {
           this.authStateService.setIsAdmin(this.isAdmin(session));
         }
 
+        if (session.isValid() && this.isStudent(session)) {
+          this.authStateService.setIsStudent(this.isStudent(session));
+        }
+
         if (session.isValid()) {
           this.session = session;
           this.getAttribute();
@@ -178,6 +184,21 @@ export class AuthenticationServices {
       const jwtToken = helper.decodeToken(accesstoken.getJwtToken());
       if (jwtToken['cognito:groups']) {
         return !!jwtToken['cognito:groups'].find((option) => option === 'admin');
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  isStudent(session) {
+    const helper = new JwtHelperService();
+
+    if (session) {
+      const accesstoken = session.getAccessToken();
+      const jwtToken = helper.decodeToken(accesstoken.getJwtToken());
+      if (jwtToken['cognito:groups']) {
+        return !!jwtToken['cognito:groups'].find((option) => option === 'student');
       } else {
         return false;
       }
