@@ -45,4 +45,4 @@ npm run build-ci from the root project
 
 Cd into the dist/auth-lib folder
 
-npm run publish
+npm publish
