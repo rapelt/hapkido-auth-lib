@@ -109,7 +109,7 @@ export class AuthenticationServices {
   }
 
   getAttribute() {
-    if (this.session && this.session.isValid()) {
+    if (this.session && this.session.isValid() && this.cognitoUser) {
       this.authStateService.setCognitoUser(this.cognitoUser);
 
       this.cognitoUser.getUserAttributes((err, results) => {
@@ -126,8 +126,8 @@ export class AuthenticationServices {
 
     if (this.cognitoUser !== null) {
       console.log('Auth Service - Has a user');
-      return this.refreshSession();
       this.getAttribute();
+      return this.refreshSession();
     } else {
       return new Promise((resolve, reject) => {
         resolve();
