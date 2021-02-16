@@ -46,6 +46,8 @@ export class AuthenticationServices {
   checkIfSessionValid(): boolean {
     if (this.session && this.session.isValid()) {
       console.log('Session Valid');
+      this.authStateService.setIsAdmin(this.isAdmin(this.session));
+      this.authStateService.setIsStudent(this.isStudent(this.session));
       return true;
     } else {
       console.log('Session invalid');

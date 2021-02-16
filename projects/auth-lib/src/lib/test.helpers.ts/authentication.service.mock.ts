@@ -63,6 +63,8 @@ export class AuthSeviceMock {
     console.log('is logged in ', isLI);
     if (isLI === 'true') {
       console.log('Session valid');
+      this.authStateService.setIsAdmin(this.isAdmin(null));
+      this.authStateService.setIsStudent(this.isStudent(null));
       return true;
     } else {
       console.log('Session invalid');
